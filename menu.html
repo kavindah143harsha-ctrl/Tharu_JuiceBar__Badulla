@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Menu &amp; Catalog | Tharu Juice Bar - Badulla</title>
+  <meta name="description" content="Browse the full catalog of fresh fruit juices, milkshakes, ice cream, smoothies, and hot dogs at Tharu Juice Bar in Badulla." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* -------------------------------------------------------------
+       THEME VARIABLES - MINT GREEN (#2E7D32) & MANGO ORANGE (#FF7A00)
+    ------------------------------------------------------------- */
+    :root {
+      --mint: #2E7D32;
+      --mint-hover: #246428;
+      --mint-light: rgba(46, 125, 50, 0.12);
+      --mint-glow: rgba(46, 125, 50, 0.28);
+
+      --mango: #FF7A00;
+      --mango-hover: #e56e00;
+      --mango-light: rgba(255, 122, 0, 0.12);
+      --mango-glow: rgba(255, 122, 0, 0.32);
+
+      --bg-base: #f8faf9;
+      --bg-gradient: radial-gradient(circle at 10% 15%, rgba(46, 125, 50, 0.08) 0%, rgba(255, 122, 0, 0.06) 40%, rgba(240, 253, 244, 0.6) 75%, #ffffff 100%);
+      
+      --glass-surface: rgba(255, 255, 255, 0.78);
+      --glass-surface-elevated: rgba(255, 255, 255, 0.92);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-border-subtle: rgba(226, 232, 240, 0.8);
+      --glass-shadow: 0 10px 32px -5px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+      --glass-shadow-hover: 0 18px 40px -4px var(--mint-glow), 0 8px 18px -2px var(--mango-glow);
+      --blur-strength: blur(16px);
+
+      --text-main: #0f172a;
+      --text-muted: #334155;
+      --text-light: #64748b;
+
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --mint: #3ddc84;
+      --mint-hover: #34c776;
+      --mint-light: rgba(61, 220, 132, 0.16);
+      --mint-glow: rgba(61, 220, 132, 0.35);
+
+      --mango: #FF7A00;
+      --mango-hover: #ff9029;
+      --mango-light: rgba(255, 122, 0, 0.2);
+      --mango-glow: rgba(255, 122, 0, 0.4);
+
+      --bg-base: #070c08;
+      --bg-gradient: radial-gradient(circle at 12% 18%, rgba(46, 125, 50, 0.24) 0%, rgba(20, 33, 24, 0.75) 45%, #070c08 100%);
+      
+      --glass-surface: rgba(16, 27, 20, 0.78);
+      --glass-surface-elevated: rgba(24, 38, 29, 0.88);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-border-subtle: rgba(255, 255, 255, 0.07);
+      --glass-shadow: 0 10px 32px -5px rgba(0, 0, 0, 0.55), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+      --glass-shadow-hover: 0 18px 42px -4px var(--mango-glow), 0 8px 20px -2px var(--mint-glow);
+
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-light: #94a3b8;
+    }
+
+    /* -------------------------------------------------------------
+       BASE STYLES
+    ------------------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-base);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-main);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: var(--blur-strength);
+      -webkit-backdrop-filter: var(--blur-strength);
+      background: var(--glass-surface);
+      border-bottom: 1px solid var(--glass-border);
+      transition: background var(--transition-normal);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--mint), var(--mango));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 14px var(--mango-glow);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, var(--text-main) 60%, var(--mango));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-text span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: block;
+      color: var(--mint);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--mango);
+      background: var(--mango-light);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-toggle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-surface-elevated);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: var(--blur-strength);
+      box-shadow: var(--glass-shadow);
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .theme-toggle-btn:hover {
+      transform: scale(1.05);
+      color: var(--mango);
+    }
+
+    .theme-toggle-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .theme-icon-dark { display: none; }
+    [data-theme="dark"] .theme-icon-dark { display: block; }
+    [data-theme="dark"] .theme-icon-light { display: none; }
+
+    /* Catalog Hero */
+    .menu-hero {
+      padding: 3rem 0 1.5rem;
+      text-align: center;
+    }
+
+    .menu-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      background: var(--mint-light);
+      color: var(--mint);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      border: 1px solid rgba(46, 125, 50, 0.25);
+    }
+
+    .menu-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Live Search Input */
+    .search-wrapper {
+      max-width: 560px;
+      margin: 0 auto 1.75rem;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1rem 1.25rem 1rem 3.25rem;
+      font-size: 1.05rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--glass-border);
+      background: var(--glass-surface-elevated);
+      color: var(--text-main);
+      box-shadow: var(--glass-shadow);
+      outline: none;
+      backdrop-filter: var(--blur-strength);
+      transition: all var(--transition-fast);
+    }
+
+    .search-input:focus {
+      border-color: var(--mango);
+      box-shadow: 0 8px 24px var(--mango-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      pointer-events: none;
+    }
+
+    .search-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+    }
+
+    /* Category Filter Tabs */
+    .category-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 6px 4px 18px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .category-filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      white-space: nowrap;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      background: var(--glass-surface);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: var(--blur-strength);
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .filter-btn:hover {
+      color: var(--mango);
+      border-color: var(--mango);
+      transform: translateY(-1px);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--mint), var(--mint-hover));
+      color: #ffffff;
+      border-color: var(--mint);
+      box-shadow: 0 4px 16px var(--mint-glow);
+    }
+
+    /* Catalog Grid & Cards */
+    .catalog-section {
+      padding: 1rem 0 4rem;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .menu-card {
+      background: var(--glass-surface);
+      backdrop-filter: var(--blur-strength);
+      -webkit-backdrop-filter: var(--blur-strength);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem;
+      box-shadow: var(--glass-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--glass-shadow-hover);
+      border-color: var(--mint);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      border-radius: calc(var(--radius-md) - 2px);
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background: rgba(148, 163, 184, 0.15);
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-card:hover .card-img-wrap img {
+      transform: scale(1.08);
+    }
+
+    /* Floating Frosted Category Tag */
+    .card-floating-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--mint);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      z-index: 2;
+    }
+
+    [data-theme="dark"] .card-floating-badge {
+      background: rgba(16, 27, 20, 0.88);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--mint);
+    }
+
+    .card-details {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .item-name {
+      font-size: 1.22rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+
+    .item-description {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--glass-border-subtle);
+    }
+
+    .price-tag {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--mango);
+    }
+
+    .currency-symbol {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-right: 2px;
+    }
+
+    .fresh-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--mint);
+      background: var(--mint-light);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(46, 125, 50, 0.2);
+    }
+
+    .no-results-box {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1rem;
+      background: var(--glass-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--glass-border);
+      display: none;
+    }
+
+    .notice-banner {
+      background: var(--glass-surface);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      backdrop-filter: var(--blur-strength);
+    }
+
+    .notice-banner strong {
+      color: var(--text-main);
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: auto;
+      border-top: 1px solid var(--glass-border);
+      background: var(--glass-surface);
+      backdrop-filter: var(--blur-strength);
+      padding: 2.5rem 0 2rem;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* Mobile Sticky Bottom Nav */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--glass-surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--glass-border);
+      padding: 8px 12px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .mobile-bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      text-align: center;
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 6px 0;
+      border-radius: var(--radius-md);
+    }
+
+    .mobile-nav-item.active, .mobile-nav-item:hover {
+      color: var(--mango);
+    }
+
+    .mobile-nav-item svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+    }
+
+    @media (max-width: 768px) {
+      body { padding-bottom: 74px; }
+      .nav-links { display: none; }
+      .mobile-bottom-nav { display: block; }
+      .category-filter-bar { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="index.html" class="brand-logo" aria-label="Tharu Juice Bar Home">
+          <div class="brand-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+              <line x1="6" y1="2" x2="6" y2="4"></line>
+              <line x1="10" y1="2" x2="10" y2="4"></line>
+              <line x1="14" y1="2" x2="14" y2="4"></line>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>Tharu Juice Bar</h1>
+            <span>Badulla, Sri Lanka</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#about" class="nav-link">About Us</a></li>
+          <li><a href="menu.html" class="nav-link active">Our Menu</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact & Reviews</a></li>
+        </ul>
+
+        <!-- Theme Toggle Switch -->
+        <div class="header-actions">
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
+            <svg class="theme-icon-light" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon-dark" viewBox="0 0 24 24">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menu Section -->
+  <main>
+    <section class="menu-hero">
+      <div class="container">
+        <div class="menu-badge">Mint Freshness • Real Fruit Quality</div>
+        <h2 class="menu-title">Our Refreshment Catalog</h2>
+        <p class="menu-subtitle">Every juice, shake, and snack is freshly made to order using natural local ingredients.</p>
+
+        <!-- Live Instant Search Bar -->
+        <div class="search-wrapper">
+          <div class="search-icon">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <input 
+            type="text" 
+            id="menuSearchInput" 
+            class="search-input" 
+            placeholder="Search mango, chocolate, smoothie, falooda..." 
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- Category Filters -->
+        <div class="category-filter-bar" id="categoryFilterBar">
+          <button class="filter-btn active" data-category="all">All Items</button>
+          <button class="filter-btn" data-category="juice">Fresh Juices</button>
+          <button class="filter-btn" data-category="milkshake">Milkshakes</button>
+          <button class="filter-btn" data-category="icecream">Ice Cream</button>
+          <button class="filter-btn" data-category="special">Special Drinks</button>
+          <button class="filter-btn" data-category="smoothie">Smoothies</button>
+          <button class="filter-btn" data-category="snack">Hot Dog Bun</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Cards -->
+    <section class="catalog-section">
+      <div class="container">
+        <div class="catalog-grid" id="catalogGrid">
+
+          <!-- 1. FRESH FRUIT JUICES (Rs. 300 / 350) -->
+          <div class="menu-card" data-category="juice" data-name="Mango Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Fresh Juice</span>
+              <img src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=600&q=80" alt="Fresh Mango Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Mango Juice</h3>
+              <p class="item-description">Sweet, tropical ripe mangoes blended smooth for maximum refreshment.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">100% Fruit</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="juice" data-name="Pineapple Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Fresh Juice</span>
+              <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=600&q=80" alt="Pineapple Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Pineapple Juice</h3>
+              <p class="item-description">Tangy and sweet fresh pineapples cold-pressed to brighten up your day.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">100% Fruit</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="juice" data-name="Watermelon Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Fresh Juice</span>
+              <img src="https://images.unsplash.com/photo-1587888637140-849b25d80ef9?auto=format&fit=crop&w=600&q=80" alt="Chilled Watermelon Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Watermelon Juice</h3>
+              <p class="item-description">Ultra-hydrating, naturally sweet, chilled watermelon nectar.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Hydrating</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="juice" data-name="Lime Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Fresh Juice</span>
+              <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Zesty Lime Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Lime Juice</h3>
+              <p class="item-description">Zesty Sri Lankan lime, freshly squeezed with the perfect balance of sweet and sour.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Vitamin C</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="juice" data-name="Orange Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Fresh Juice</span>
+              <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" alt="Fresh Orange Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Orange Juice</h3>
+              <p class="item-description">Sun-kissed citrus goodness packed with pure energy and natural flavor.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Immunity</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="juice" data-name="Passion Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Fresh Juice</span>
+              <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&w=600&q=80" alt="Passion Fruit Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Passion Juice</h3>
+              <p class="item-description">Aromatic passion fruit blended into a tart and invigorating tropical drink.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Exotic</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="juice" data-name="Papaya Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Fresh Juice</span>
+              <img src="https://images.unsplash.com/photo-1526318897995-1756ff443015?auto=format&fit=crop&w=600&q=80" alt="Fresh Papaya Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Papaya Juice</h3>
+              <p class="item-description">Smooth ripe red papaya juice, naturally gentle and rich in healthy enzymes.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Healthy</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="juice" data-name="Banana Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Fresh Juice</span>
+              <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=600&q=80" alt="Natural Banana Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Banana Juice</h3>
+              <p class="item-description">Nutritious and creamy local bananas blended for an instant natural boost.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Energy</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="juice" data-name="Mixed Fruit Juice">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Special Blend</span>
+              <img src="https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?auto=format&fit=crop&w=600&q=80" alt="Mixed Fruit Juice" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Mixed Fruit Juice</h3>
+              <p class="item-description">Delicious harmonic fusion of papaya, mango, pineapple, and watermelon together.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>350</div>
+              <span class="fresh-tag">Signature</span>
+            </div>
+          </div>
+
+          <!-- 2. MILKSHAKES (Rs. 400 each) -->
+          <div class="menu-card" data-category="milkshake" data-name="Vanilla Milkshake">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Milkshake</span>
+              <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" alt="Vanilla Milkshake" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Vanilla Milkshake</h3>
+              <p class="item-description">Classic creamy vanilla blended with fresh chilled milk and vanilla essence.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>400</div>
+              <span class="fresh-tag">Creamy</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="milkshake" data-name="Chocolate Milkshake">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Milkshake</span>
+              <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=600&q=80" alt="Chocolate Milkshake" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Chocolate Milkshake</h3>
+              <p class="item-description">Decadent chocolate syrup and cocoa blended velvety thick for cocoa lovers.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>400</div>
+              <span class="fresh-tag">Favorite</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="milkshake" data-name="Mango Milkshake">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Milkshake</span>
+              <img src="https://images.unsplash.com/photo-1570784332176-fdd73da66f03?auto=format&fit=crop&w=600&q=80" alt="Mango Milkshake" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Mango Milkshake</h3>
+              <p class="item-description">Luscious sweet mango pulp churned with rich cold milk and ice cream.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>400</div>
+              <span class="fresh-tag">Tropical</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="milkshake" data-name="Banana Milkshake">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Milkshake</span>
+              <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80" alt="Banana Milkshake" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Banana Milkshake</h3>
+              <p class="item-description">Thick, filling, and creamy potassium-packed banana shake delight.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>400</div>
+              <span class="fresh-tag">Smooth</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="milkshake" data-name="Chocolate Cookies Milkshake">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Milkshake</span>
+              <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80" alt="Chocolate Cookies Milkshake" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Chocolate Cookies Milkshake</h3>
+              <p class="item-description">Crunchy chocolate cookies blended into a thick, indulgent, creamy shake.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>400</div>
+              <span class="fresh-tag">Crunchy</span>
+            </div>
+          </div>
+
+          <!-- 3. ICE CREAM (Rs. 300 each) -->
+          <div class="menu-card" data-category="icecream" data-name="Vanilla Ice Cream">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Ice Cream</span>
+              <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&w=600&q=80" alt="Vanilla Ice Cream" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Vanilla Ice Cream</h3>
+              <p class="item-description">Silky and sweet classic vanilla scoops served delightfully chilled.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Classic</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="icecream" data-name="Chocolate Ice Cream">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Ice Cream</span>
+              <img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?auto=format&fit=crop&w=600&q=80" alt="Chocolate Ice Cream" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Chocolate Ice Cream</h3>
+              <p class="item-description">Rich and cocoa-heavy scoops to cool you down in pure dessert delight.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Chocolate</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="icecream" data-name="Strawberry Ice Cream">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Ice Cream</span>
+              <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=600&q=80" alt="Strawberry Ice Cream" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Strawberry Ice Cream</h3>
+              <p class="item-description">Berry-sweet, pretty pink strawberry scoops loved by kids and adults.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>300</div>
+              <span class="fresh-tag">Fruity</span>
+            </div>
+          </div>
+
+          <!-- 4. SPECIAL DRINKS (Rs. 400 each) -->
+          <div class="menu-card" data-category="special" data-name="Falooda">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Special Drink</span>
+              <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80" alt="Sri Lankan Falooda" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Falooda</h3>
+              <p class="item-description">Rose syrup milk, basil seeds (kasakasa), vermicelli, and a rich scoop of ice cream on top.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>400</div>
+              <span class="fresh-tag">Special</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="special" data-name="Fruit Salad with Ice Cream">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Special Dessert</span>
+              <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=600&q=80" alt="Fruit Salad with Ice Cream" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Fruit Salad with Ice Cream</h3>
+              <p class="item-description">Diced fresh seasonal fruits topped with a luscious scoop of creamy ice cream.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>400</div>
+              <span class="fresh-tag">Fresh Treat</span>
+            </div>
+          </div>
+
+          <!-- 5. SMOOTHIES (Rs. 600 each) -->
+          <div class="menu-card" data-category="smoothie" data-name="Mango Smoothie">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Smoothie</span>
+              <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=600&q=80" alt="Mango Smoothie" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Mango Smoothie</h3>
+              <p class="item-description">Thick, golden, velvety mango blend with natural yogurt for health-conscious diners.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>600</div>
+              <span class="fresh-tag">Velvety</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="smoothie" data-name="Banana Smoothie">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Smoothie</span>
+              <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80" alt="Banana Smoothie" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Banana Smoothie</h3>
+              <p class="item-description">Super creamy banana and yogurt blend offering lasting sustained stamina.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>600</div>
+              <span class="fresh-tag">Healthy</span>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="smoothie" data-name="Avocado Smoothie">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Smoothie</span>
+              <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Avocado Smoothie" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Avocado Smoothie</h3>
+              <p class="item-description">Pure buttery avocado whipped smooth with milk and a touch of sweetness. Rich in good fats.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>600</div>
+              <span class="fresh-tag">Superfood</span>
+            </div>
+          </div>
+
+          <!-- 6. HOT DOG BUN (Rs. 200) -->
+          <div class="menu-card" data-category="snack" data-name="Hot Dog Bun">
+            <div class="card-img-wrap">
+              <span class="card-floating-badge">Warm Snack</span>
+              <img src="https://images.unsplash.com/photo-1619740455993-9e612b1af08a?auto=format&fit=crop&w=600&q=80" alt="Toasted Hot Dog Bun" loading="lazy" />
+            </div>
+            <div class="card-details">
+              <h3 class="item-name">Hot Dog Bun</h3>
+              <p class="item-description">Warm, freshly toasted soft bun filled with a savory sausage, mustard, and tomato sauce.</p>
+            </div>
+            <div class="card-bottom">
+              <div class="price-tag"><span class="currency-symbol">Rs.</span>200</div>
+              <span class="fresh-tag">Warm &amp; Tasty</span>
+            </div>
+          </div>
+
+          <!-- No results fallback -->
+          <div class="no-results-box" id="noResults">
+            <h3>No Refreshments Found</h3>
+            <p>Try searching for another keyword like "mango", "ice cream", or switch category.</p>
+          </div>
+
+        </div>
+
+        <div class="notice-banner">
+          Prices and items are subject to daily fruit market availability. Visit us at <strong>NO 88, Clinic Road, Adara Mawatha, Badulla</strong> or call <strong>+94 71 125 9586</strong>.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear"></span> Tharu Juice Bar - Badulla. All rights reserved.</p>
+        <p><a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener" style="color: var(--mango); font-weight: 700;">Find us on Google Maps ↗</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Bottom Nav -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <div class="mobile-bottom-grid">
+      <a href="index.html" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Home</span>
+      </a>
+      <a href="menu.html" class="mobile-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+        <span>Menu</span>
+      </a>
+      <a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+        <span>Maps</span>
+      </a>
+      <a href="index.html#contact" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Review</span>
+      </a>
+    </div>
+  </nav>
+
+  <script>
+    // Theme Management
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const storedTheme = localStorage.getItem('tharu_theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      localStorage.setItem('tharu_theme', theme);
+    }
+
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else if (prefersDark) {
+      applyTheme('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Real-Time Search & Category Filters
+    const searchInput = document.getElementById('menuSearchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const menuCards = document.querySelectorAll('.menu-card');
+    const noResults = document.getElementById('noResults');
+
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    function filterMenu() {
+      let visibleCount = 0;
+
+      menuCards.forEach(card => {
+        const itemCategory = card.getAttribute('data-category');
+        const itemName = card.getAttribute('data-name').toLowerCase();
+        const itemDesc = card.querySelector('.item-description').textContent.toLowerCase();
+
+        const matchesCategory = (currentCategory === 'all' || itemCategory === currentCategory);
+        const matchesSearch = itemName.includes(searchQuery) || itemDesc.includes(searchQuery);
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-category');
+        filterMenu();
+      });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      filterMenu();
+    });
+
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Tharu Juice Bar | Fresh & Natural Refreshments - Badulla</title>
+  <meta name="description" content="Tharu Juice Bar in Badulla offers fresh fruit juices, rich milkshakes, smoothies, and ice creams. Visit us at Clinic Road, Badulla or view our menu." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* -------------------------------------------------------------
+       THEME VARIABLES - MINT GREEN (#2E7D32) & MANGO ORANGE (#FF7A00)
+    ------------------------------------------------------------- */
+    :root {
+      /* Brand Accent Colors */
+      --mint: #2E7D32;
+      --mint-hover: #246428;
+      --mint-light: rgba(46, 125, 50, 0.12);
+      --mint-glow: rgba(46, 125, 50, 0.28);
+
+      --mango: #FF7A00;
+      --mango-hover: #e56e00;
+      --mango-light: rgba(255, 122, 0, 0.12);
+      --mango-glow: rgba(255, 122, 0, 0.32);
+
+      --whatsapp-color: #25D366;
+      --whatsapp-hover: #1eb857;
+
+      /* Light Mode Neutrals & Soft Glass */
+      --bg-base: #f8faf9;
+      --bg-gradient: radial-gradient(circle at 10% 15%, rgba(46, 125, 50, 0.08) 0%, rgba(255, 122, 0, 0.06) 40%, rgba(240, 253, 244, 0.6) 75%, #ffffff 100%);
+      
+      --glass-surface: rgba(255, 255, 255, 0.76);
+      --glass-surface-elevated: rgba(255, 255, 255, 0.92);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-border-subtle: rgba(226, 232, 240, 0.8);
+      --glass-shadow: 0 10px 32px -5px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+      --glass-shadow-hover: 0 18px 40px -4px var(--mint-glow), 0 8px 18px -2px var(--mango-glow);
+      --blur-strength: blur(16px);
+
+      --text-main: #0f172a;
+      --text-muted: #334155;
+      --text-light: #64748b;
+
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Dark Mode Palette */
+    [data-theme="dark"] {
+      --mint: #3ddc84;
+      --mint-hover: #34c776;
+      --mint-light: rgba(61, 220, 132, 0.16);
+      --mint-glow: rgba(61, 220, 132, 0.35);
+
+      --mango: #FF7A00;
+      --mango-hover: #ff9029;
+      --mango-light: rgba(255, 122, 0, 0.2);
+      --mango-glow: rgba(255, 122, 0, 0.4);
+
+      --bg-base: #070c08;
+      --bg-gradient: radial-gradient(circle at 12% 18%, rgba(46, 125, 50, 0.24) 0%, rgba(20, 33, 24, 0.75) 45%, #070c08 100%);
+      
+      --glass-surface: rgba(16, 27, 20, 0.78);
+      --glass-surface-elevated: rgba(24, 38, 29, 0.88);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-border-subtle: rgba(255, 255, 255, 0.07);
+      --glass-shadow: 0 10px 32px -5px rgba(0, 0, 0, 0.55), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+      --glass-shadow-hover: 0 18px 42px -4px var(--mango-glow), 0 8px 20px -2px var(--mint-glow);
+
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-light: #94a3b8;
+    }
+
+    /* -------------------------------------------------------------
+       BASE RESET & TYPOGRAPHY
+    ------------------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-base);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-main);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* -------------------------------------------------------------
+       GLASSMORPHIC HEADER
+    ------------------------------------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: var(--blur-strength);
+      -webkit-backdrop-filter: var(--blur-strength);
+      background: var(--glass-surface);
+      border-bottom: 1px solid var(--glass-border);
+      transition: background var(--transition-normal), border var(--transition-normal);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--mint), var(--mango));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 14px var(--mango-glow);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, var(--text-main) 60%, var(--mango));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-text span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: block;
+      color: var(--mint);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--mango);
+      background: var(--mango-light);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-toggle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-surface-elevated);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: var(--blur-strength);
+      box-shadow: var(--glass-shadow);
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .theme-toggle-btn:hover {
+      transform: scale(1.05);
+      color: var(--mango);
+    }
+
+    .theme-toggle-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .theme-icon-dark { display: none; }
+    [data-theme="dark"] .theme-icon-dark { display: block; }
+    [data-theme="dark"] .theme-icon-light { display: none; }
+
+    /* -------------------------------------------------------------
+       HERO SECTION
+    ------------------------------------------------------------- */
+    .hero-section {
+      padding: 3.75rem 0 2.5rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      background: var(--mint-light);
+      color: var(--mint);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(46, 125, 50, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title .highlight-mango {
+      background: linear-gradient(120deg, var(--mango), #ffaa4d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title .highlight-mint {
+      background: linear-gradient(120deg, var(--mint), #52b788);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 540px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Modern Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0.85rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      box-shadow: var(--glass-shadow);
+      min-height: 48px;
+    }
+
+    .btn-mango {
+      background: linear-gradient(135deg, var(--mango), var(--mango-hover));
+      color: #ffffff;
+      box-shadow: 0 8px 22px var(--mango-glow);
+    }
+
+    .btn-mango:hover {
+      background: linear-gradient(135deg, var(--mango-hover), #cc6200);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px var(--mango-glow);
+    }
+
+    .btn-mint {
+      background: linear-gradient(135deg, var(--mint), var(--mint-hover));
+      color: #ffffff;
+      box-shadow: 0 8px 22px var(--mint-glow);
+    }
+
+    .btn-mint:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px var(--mint-glow);
+    }
+
+    .btn-glass {
+      background: var(--glass-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: var(--blur-strength);
+    }
+
+    .btn-glass:hover {
+      border-color: var(--mint);
+      color: var(--mint);
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-whatsapp:hover {
+      background: linear-gradient(135deg, #20ba5a, #0d7367);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(37, 211, 102, 0.45);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--glass-border-subtle);
+    }
+
+    .stat-item h4 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--mango);
+    }
+
+    .stat-item p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Hero Glass Card Showcase */
+    .hero-glass-card {
+      background: var(--glass-surface);
+      backdrop-filter: var(--blur-strength);
+      -webkit-backdrop-filter: var(--blur-strength);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+      box-shadow: var(--glass-shadow-hover);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glass-card::before {
+      content: '';
+      position: absolute;
+      top: -25%;
+      right: -25%;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--mango-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge-pill {
+      display: inline-block;
+      padding: 4px 14px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-full);
+      background: var(--mint-light);
+      color: var(--mint);
+      margin-bottom: 1rem;
+    }
+
+    .hero-showcase-title {
+      font-size: 1.55rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-showcase-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-pill {
+      padding: 6px 14px;
+      background: var(--glass-surface-elevated);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-live-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--glass-surface-elevated);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--glass-border-subtle);
+    }
+
+    .status-dot-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--mint);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 0 3px var(--mint-light);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 var(--mint-glow); }
+      70% { box-shadow: 0 0 0 8px rgba(46, 125, 50, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+    }
+
+    .hours-tag {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* -------------------------------------------------------------
+       SECTION STYLES
+    ------------------------------------------------------------- */
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-tag {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--mango);
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    /* -------------------------------------------------------------
+       ABOUT & FEATURES SECTION
+    ------------------------------------------------------------- */
+    .about-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .glass-card {
+      background: var(--glass-surface);
+      backdrop-filter: var(--blur-strength);
+      -webkit-backdrop-filter: var(--blur-strength);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--glass-shadow);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border var(--transition-fast);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--glass-shadow-hover);
+      border-color: var(--mint);
+    }
+
+    .card-icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+      font-size: 1.5rem;
+    }
+
+    .bg-icon-mint {
+      background: linear-gradient(135deg, var(--mint), #52b788);
+      box-shadow: 0 8px 18px var(--mint-glow);
+    }
+
+    .bg-icon-mango {
+      background: linear-gradient(135deg, var(--mango), #ffaa4d);
+      box-shadow: 0 8px 18px var(--mango-glow);
+    }
+
+    .card-icon-box svg {
+      width: 26px;
+      height: 26px;
+      stroke: #ffffff;
+      stroke-width: 2.2;
+    }
+
+    .glass-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .glass-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* -------------------------------------------------------------
+       CONTACT & WHATSAPP REVIEW
+    ------------------------------------------------------------- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .info-icon-wrapper {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-md);
+      background: var(--mint-light);
+      color: var(--mint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon-wrapper svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .info-text h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-text p, .info-text a {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .info-text a:hover {
+      color: var(--mango);
+      text-decoration: underline;
+    }
+
+    .directions-cta-box {
+      margin-top: 1rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      background: var(--glass-surface-elevated);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .directions-cta-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Review Form */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--glass-border-subtle);
+      background: var(--glass-surface-elevated);
+      color: var(--text-main);
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+      outline: none;
+      backdrop-filter: var(--blur-strength);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--mint);
+      box-shadow: 0 0 0 3px var(--mint-light);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .rating-select {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .rating-option {
+      cursor: pointer;
+    }
+
+    .rating-option input {
+      display: none;
+    }
+
+    .rating-star-btn {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--glass-border-subtle);
+      background: var(--glass-surface-elevated);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all var(--transition-fast);
+    }
+
+    .rating-option input:checked + .rating-star-btn {
+      background: var(--mango-light);
+      border-color: var(--mango);
+      color: var(--mango);
+      font-weight: 700;
+    }
+
+    /* -------------------------------------------------------------
+       FOOTER
+    ------------------------------------------------------------- */
+    .site-footer {
+      margin-top: auto;
+      border-top: 1px solid var(--glass-border);
+      background: var(--glass-surface);
+      backdrop-filter: var(--blur-strength);
+      -webkit-backdrop-filter: var(--blur-strength);
+      padding: 3rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      max-width: 380px;
+    }
+
+    .footer-col h5 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--mango);
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--glass-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* Mobile Sticky Thumb Nav */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--glass-surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--glass-border);
+      padding: 8px 12px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .mobile-bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      text-align: center;
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 6px 0;
+      border-radius: var(--radius-md);
+      transition: color var(--transition-fast);
+    }
+
+    .mobile-nav-item.active, .mobile-nav-item:hover {
+      color: var(--mango);
+    }
+
+    .mobile-nav-item svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+    }
+
+    @media (max-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-cards-grid { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      body { padding-bottom: 74px; }
+      .nav-links { display: none; }
+      .mobile-bottom-nav { display: block; }
+      .hero-section { padding: 2.5rem 0 1.5rem; }
+      .hero-buttons { flex-direction: column; width: 100%; }
+      .hero-buttons .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="index.html" class="brand-logo" aria-label="Tharu Juice Bar Home">
+          <div class="brand-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+              <line x1="6" y1="2" x2="6" y2="4"></line>
+              <line x1="10" y1="2" x2="10" y2="4"></line>
+              <line x1="14" y1="2" x2="14" y2="4"></line>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>Tharu Juice Bar</h1>
+            <span>Badulla, Sri Lanka</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="menu.html" class="nav-link">Our Menu</a></li>
+          <li><a href="#contact" class="nav-link">Contact & Reviews</a></li>
+        </ul>
+
+        <!-- Right Side Theme Switcher -->
+        <div class="header-actions">
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
+            <svg class="theme-icon-light" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon-dark" viewBox="0 0 24 24">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              100% Fresh &amp; Natural in Badulla
+            </div>
+            <h2 class="hero-title">
+              Savor the Sip of <span class="highlight-mango">Pure Nature</span> &amp; <span class="highlight-mint">Fresh Mint</span>
+            </h2>
+            <p class="hero-desc">
+              Welcome to <strong>Tharu Juice Bar</strong>, Badulla's sanctuary for wholesome fruit juices, creamy milkshakes, lush smoothies, and tasty snacks. Prepared fresh daily.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="menu.html" class="btn btn-mango">
+                <span>Explore Full Menu</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </a>
+
+              <a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener noreferrer" class="btn btn-glass">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Get Directions</span>
+              </a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <h4>100%</h4>
+                <p>Natural Fruit</p>
+              </div>
+              <div class="stat-item">
+                <h4>Rs. 200+</h4>
+                <p>Starting Price</p>
+              </div>
+              <div class="stat-item">
+                <h4>9AM - 6PM</h4>
+                <p>Open Daily</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Glass Showcase Card -->
+          <div class="hero-visual">
+            <div class="hero-glass-card">
+              <span class="hero-badge-pill">Daily Refreshment Hub</span>
+              <h3 class="hero-showcase-title">Tharu Juice Bar Experience</h3>
+              <p class="hero-showcase-desc">Crafted with garden-fresh Sri Lankan produce right along Clinic Road in Badulla.</p>
+
+              <div class="hero-pill-list">
+                <span class="hero-pill">🥭 Fresh Mango</span>
+                <span class="hero-pill">🍍 Cold Pineapple</span>
+                <span class="hero-pill">🍉 Watermelon</span>
+                <span class="hero-pill">🥑 Avocado Smoothie</span>
+                <span class="hero-pill">🍧 Falooda Deluxe</span>
+                <span class="hero-pill">🌭 Toasted Hot Dogs</span>
+              </div>
+
+              <div class="hero-live-status">
+                <div class="status-dot-container">
+                  <span class="status-dot"></span>
+                  <span>Open for Takeaway &amp; Dine-in</span>
+                </div>
+                <span class="hours-tag">Daily 9:00 AM - 6:00 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About Tharu Juice Bar</span>
+          <h2 class="section-title">The Healthiest Sip in Badulla</h2>
+          <p class="section-subtitle">Located conveniently along Clinic Road (Adara Mawatha), we provide real nourishment and chilled revitalizing drinks.</p>
+        </div>
+
+        <div class="about-cards-grid">
+          <div class="glass-card">
+            <div class="card-icon-box bg-icon-mint">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+            </div>
+            <h3>100% Real Fruit</h3>
+            <p>We source fresh, ripe, local fruits daily. Enjoy nutrient-rich cold beverages without artificial flavorings or synthetic colors.</p>
+          </div>
+
+          <div class="glass-card">
+            <div class="card-icon-box bg-icon-mango">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </div>
+            <h3>Pure Hygiene</h3>
+            <p>Clean preparation, pure filtered ice, and premium ingredients guarantee that every glass served is wholesome, safe, and delicious.</p>
+          </div>
+
+          <div class="glass-card">
+            <div class="card-icon-box bg-icon-mint">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+            </div>
+            <h3>Warm Hospitality</h3>
+            <p>Whether stopping for a fast morning vitality cup or catching up with friends, our staff always greets you with genuine Badulla warmth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location & WhatsApp Review Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Visit &amp; Connect</span>
+          <h2 class="section-title">Drop By or Share Your Thoughts</h2>
+          <p class="section-subtitle">We would love to welcome you. Check our location or send feedback straight to our WhatsApp chat.</p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Shop Info -->
+          <div class="glass-card info-card">
+            <h3 style="font-size: 1.4rem;">Shop Information</h3>
+
+            <div class="info-row">
+              <div class="info-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="info-text">
+                <h4>Address</h4>
+                <p>NO 88, Clinic Road, adara mawatha, Badulla, 90000, Sri Lanka</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div class="info-text">
+                <h4>Opening Hours</h4>
+                <p>9:00 AM – 6:00 PM (Open 7 Days a Week)</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="info-text">
+                <h4>Call or WhatsApp</h4>
+                <a href="tel:+94711259586">+94 71 125 9586</a>
+              </div>
+            </div>
+
+            <div class="directions-cta-box">
+              <p>Heading our way? Open GPS directions directly on Google Maps for instant turn-by-turn guidance.</p>
+              <a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener noreferrer" class="btn btn-mint" style="width: 100%;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+                <span>Open Google Maps Directions</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- WhatsApp Review Form -->
+          <div class="glass-card review-form-card">
+            <h3>Customer Review &amp; Comments</h3>
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.5rem;">Your review goes straight to our team on WhatsApp!</p>
+
+            <form id="whatsappReviewForm" onsubmit="handleWhatsAppReview(event)">
+              <div class="form-group">
+                <label for="reviewerName" class="form-label">Your Name *</label>
+                <input type="text" id="reviewerName" class="form-input" placeholder="e.g. Nimal Perera" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Your Rating</label>
+                <div class="rating-select">
+                  <label class="rating-option">
+                    <input type="radio" name="experienceRating" value="⭐⭐⭐⭐⭐ Excellent (5/5)" checked />
+                    <span class="rating-star-btn">⭐ 5/5 Superb</span>
+                  </label>
+                  <label class="rating-option">
+                    <input type="radio" name="experienceRating" value="⭐⭐⭐⭐ Good (4/5)" />
+                    <span class="rating-star-btn">⭐ 4/5 Good</span>
+                  </label>
+                  <label class="rating-option">
+                    <input type="radio" name="experienceRating" value="⭐⭐⭐ Nice (3/5)" />
+                    <span class="rating-star-btn">⭐ 3/5 Nice</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="favoriteItem" class="form-label">What did you order? (Optional)</label>
+                <input type="text" id="favoriteItem" class="form-input" placeholder="e.g. Mango Juice, Falooda, Avocado Smoothie..." />
+              </div>
+
+              <div class="form-group">
+                <label for="reviewComment" class="form-label">Your Review / Message *</label>
+                <textarea id="reviewComment" class="form-textarea" placeholder="How did you like our drinks, hygiene, and service?" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-whatsapp" style="width: 100%;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.18-.54.06-.25-.13-1.06-.39-2.02-1.24-.75-.67-1.25-1.49-1.4-1.74-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.13.17 1.77 2.7 4.28 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.3Z"/>
+                </svg>
+                <span>Send Review via WhatsApp</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="margin-bottom: 0.5rem;">
+            <div class="brand-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+              </svg>
+            </div>
+            <div class="brand-text">
+              <h1 style="font-size: 1.15rem;">Tharu Juice Bar</h1>
+              <span>Badulla, Sri Lanka</span>
+            </div>
+          </div>
+          <p>Handcrafted fresh juices, wholesome milkshakes, and delicious snacks serving refreshing moments to Badulla city.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="menu.html">View Our Menu</a></li>
+            <li><a href="#contact">Leave a Review</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Visit Us</h5>
+          <ul class="footer-links">
+            <li><span style="color: var(--text-muted);">NO 88, Clinic Road, Adara Mawatha, Badulla</span></li>
+            <li><a href="tel:+94711259586">+94 71 125 9586</a></li>
+            <li><a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener">Google Maps Location ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear"></span> Tharu Juice Bar. All rights reserved.</p>
+        <p>Fresh &amp; Natural Refreshments • Badulla, 90000</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Bar -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <div class="mobile-bottom-grid">
+      <a href="index.html" class="mobile-nav-item active">
+        <svg viewBox="0 0 24 24" fill="none"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Home</span>
+      </a>
+      <a href="menu.html" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+        <span>Menu</span>
+      </a>
+      <a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+        <span>Maps</span>
+      </a>
+      <a href="#contact" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Review</span>
+      </a>
+    </div>
+  </nav>
+
+  <script>
+    // Theme Management
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const storedTheme = localStorage.getItem('tharu_theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      localStorage.setItem('tharu_theme', theme);
+    }
+
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else if (prefersDark) {
+      applyTheme('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // WhatsApp Feedback Handler
+    function handleWhatsAppReview(e) {
+      e.preventDefault();
+      const name = document.getElementById('reviewerName').value.trim();
+      const rating = document.querySelector('input[name="experienceRating"]:checked')?.value || '⭐⭐⭐⭐⭐ (5/5)';
+      const favoriteItem = document.getElementById('favoriteItem').value.trim();
+      const comment = document.getElementById('reviewComment').value.trim();
+
+      if (!name || !comment) {
+        alert('Please fill out your name and review.');
+        return;
+      }
+
+      let message = `*🌟 Customer Review - Tharu Juice Bar*\n\n`;
+      message += `*Name:* ${name}\n`;
+      message += `*Rating:* ${rating}\n`;
+      if (favoriteItem) message += `*Item:* ${favoriteItem}\n`;
+      message += `*Feedback:* ${comment}\n\n`;
+      message += `_Sent via Tharu Juice Bar Website_`;
+
+      const whatsappUrl = `https://wa.me/94711259586?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
