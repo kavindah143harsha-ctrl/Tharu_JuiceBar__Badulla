@@ -16,7 +16,6 @@
        THEME VARIABLES - MINT GREEN (#2E7D32) & MANGO ORANGE (#FF7A00)
     ------------------------------------------------------------- */
     :root {
-      /* Brand Accent Colors */
       --mint: #2E7D32;
       --mint-hover: #246428;
       --mint-light: rgba(46, 125, 50, 0.12);
@@ -30,7 +29,6 @@
       --whatsapp-color: #25D366;
       --whatsapp-hover: #1eb857;
 
-      /* Light Mode Neutrals & Soft Glass */
       --bg-base: #f8faf9;
       --bg-gradient: radial-gradient(circle at 10% 15%, rgba(46, 125, 50, 0.08) 0%, rgba(255, 122, 0, 0.06) 40%, rgba(240, 253, 244, 0.6) 75%, #ffffff 100%);
       
@@ -55,7 +53,6 @@
       --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Dark Mode Palette */
     [data-theme="dark"] {
       --mint: #3ddc84;
       --mint-hover: #34c776;
@@ -82,9 +79,6 @@
       --text-light: #94a3b8;
     }
 
-    /* -------------------------------------------------------------
-       BASE RESET & TYPOGRAPHY
-    ------------------------------------------------------------- */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -129,9 +123,14 @@
       padding: 0 1.25rem;
     }
 
-    /* -------------------------------------------------------------
-       GLASSMORPHIC HEADER
-    ------------------------------------------------------------- */
+    /* Target anchors with sticky header margin */
+    #contact,
+    #review-section,
+    #about {
+      scroll-margin-top: 88px;
+    }
+
+    /* Header */
     .site-header {
       position: sticky;
       top: 0;
@@ -248,9 +247,7 @@
     [data-theme="dark"] .theme-icon-dark { display: block; }
     [data-theme="dark"] .theme-icon-light { display: none; }
 
-    /* -------------------------------------------------------------
-       HERO SECTION
-    ------------------------------------------------------------- */
+    /* Hero */
     .hero-section {
       padding: 3.75rem 0 2.5rem;
       position: relative;
@@ -309,7 +306,6 @@
       margin-bottom: 2.5rem;
     }
 
-    /* Modern Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -395,7 +391,6 @@
       font-weight: 600;
     }
 
-    /* Hero Glass Card Showcase */
     .hero-glass-card {
       background: var(--glass-surface);
       backdrop-filter: var(--blur-strength);
@@ -504,9 +499,7 @@
       font-weight: 600;
     }
 
-    /* -------------------------------------------------------------
-       SECTION STYLES
-    ------------------------------------------------------------- */
+    /* Sections */
     .section {
       padding: 4rem 0;
     }
@@ -537,9 +530,7 @@
       color: var(--text-muted);
     }
 
-    /* -------------------------------------------------------------
-       ABOUT & FEATURES SECTION
-    ------------------------------------------------------------- */
+    /* About */
     .about-cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -603,9 +594,7 @@
       line-height: 1.6;
     }
 
-    /* -------------------------------------------------------------
-       CONTACT & WHATSAPP REVIEW
-    ------------------------------------------------------------- */
+    /* Contact & Review Form */
     .contact-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -675,7 +664,11 @@
       color: var(--text-muted);
     }
 
-    /* Review Form */
+    /* Review Card Focus Pulse */
+    .review-form-card {
+      position: relative;
+    }
+
     .form-group {
       margin-bottom: 1.25rem;
     }
@@ -746,9 +739,7 @@
       font-weight: 700;
     }
 
-    /* -------------------------------------------------------------
-       FOOTER
-    ------------------------------------------------------------- */
+    /* Footer */
     .site-footer {
       margin-top: auto;
       border-top: 1px solid var(--glass-border);
@@ -807,7 +798,7 @@
       color: var(--text-light);
     }
 
-    /* Mobile Sticky Thumb Nav */
+    /* Mobile Bottom Navigation */
     .mobile-bottom-nav {
       display: none;
       position: fixed;
@@ -874,7 +865,7 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Sticky Glassmorphic Header -->
   <header class="site-header">
     <div class="container">
       <div class="nav-container">
@@ -903,7 +894,7 @@
           <li><a href="#contact" class="nav-link">Contact & Reviews</a></li>
         </ul>
 
-        <!-- Right Side Theme Switcher -->
+        <!-- Theme Toggle -->
         <div class="header-actions">
           <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
             <svg class="theme-icon-light" viewBox="0 0 24 24">
@@ -1050,7 +1041,7 @@
         </div>
 
         <div class="contact-layout">
-          <!-- Shop Info -->
+          <!-- Shop Information -->
           <div class="glass-card info-card">
             <h3 style="font-size: 1.4rem;">Shop Information</h3>
 
@@ -1093,8 +1084,8 @@
             </div>
           </div>
 
-          <!-- WhatsApp Review Form -->
-          <div class="glass-card review-form-card">
+          <!-- Customer Review & Comments Form (Targets Directly via #review-section) -->
+          <div class="glass-card review-form-card" id="review-section">
             <h3>Customer Review &amp; Comments</h3>
             <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.5rem;">Your review goes straight to our team on WhatsApp!</p>
 
@@ -1171,7 +1162,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="menu.html">View Our Menu</a></li>
-            <li><a href="#contact">Leave a Review</a></li>
+            <li><a href="#review-section">Leave a Review</a></li>
           </ul>
         </div>
 
@@ -1192,7 +1183,7 @@
     </div>
   </footer>
 
-  <!-- Mobile Bottom Bar -->
+  <!-- Mobile Bottom Bar (Review targets #review-section directly) -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
     <div class="mobile-bottom-grid">
       <a href="index.html" class="mobile-nav-item active">
@@ -1207,7 +1198,7 @@
         <svg viewBox="0 0 24 24" fill="none"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
         <span>Maps</span>
       </a>
-      <a href="#contact" class="mobile-nav-item">
+      <a href="#review-section" class="mobile-nav-item" id="mobileReviewNavLink">
         <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
         <span>Review</span>
       </a>
@@ -1238,6 +1229,34 @@
     themeToggleBtn.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Mobile Review Smooth Scrolling & Input Focus
+    const mobileReviewNavLink = document.getElementById('mobileReviewNavLink');
+    if (mobileReviewNavLink) {
+      mobileReviewNavLink.addEventListener('click', (e) => {
+        const reviewSection = document.getElementById('review-section');
+        if (reviewSection) {
+          e.preventDefault();
+          reviewSection.scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => {
+            const input = document.getElementById('reviewerName');
+            if (input) input.focus();
+          }, 450);
+        }
+      });
+    }
+
+    // Auto-scroll if navigated from external page with #review-section hash
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#review-section') {
+        const reviewSection = document.getElementById('review-section');
+        if (reviewSection) {
+          setTimeout(() => {
+            reviewSection.scrollIntoView({ behavior: 'smooth' });
+          }, 200);
+        }
+      }
     });
 
     // WhatsApp Feedback Handler
