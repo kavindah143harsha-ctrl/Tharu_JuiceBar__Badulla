@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Tharu Juice Bar | Fresh & Natural Refreshments - Badulla</title>
   <meta name="description" content="Tharu Juice Bar in Badulla offers fresh fruit juices, rich milkshakes, smoothies, and ice creams. Visit us at Clinic Road, Badulla or view our menu." />
@@ -53,7 +54,9 @@
       --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    [data-theme="dark"] {
+    [data-theme="dark"],
+    html[data-theme="dark"],
+    body[data-theme="dark"] {
       --mint: #3ddc84;
       --mint-hover: #34c776;
       --mint-light: rgba(61, 220, 132, 0.16);
@@ -244,8 +247,9 @@
     }
 
     .theme-icon-dark { display: none; }
-    [data-theme="dark"] .theme-icon-dark { display: block; }
-    [data-theme="dark"] .theme-icon-light { display: none; }
+    .theme-icon-light { display: block; }
+    [data-theme="dark"] .theme-icon-dark { display: block !important; }
+    [data-theme="dark"] .theme-icon-light { display: none !important; }
 
     /* Hero */
     .hero-section {
@@ -664,7 +668,6 @@
       color: var(--text-muted);
     }
 
-    /* Review Card Focus Pulse */
     .review-form-card {
       position: relative;
     }
@@ -896,7 +899,7 @@
 
         <!-- Theme Toggle -->
         <div class="header-actions">
-          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
+          <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
             <svg class="theme-icon-light" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -1084,7 +1087,7 @@
             </div>
           </div>
 
-          <!-- Customer Review & Comments Form (Targets Directly via #review-section) -->
+          <!-- Customer Review & Comments Form -->
           <div class="glass-card review-form-card" id="review-section">
             <h3>Customer Review &amp; Comments</h3>
             <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.5rem;">Your review goes straight to our team on WhatsApp!</p>
@@ -1092,23 +1095,23 @@
             <form id="whatsappReviewForm" onsubmit="handleWhatsAppReview(event)">
               <div class="form-group">
                 <label for="reviewerName" class="form-label">Your Name *</label>
-                <input type="text" id="reviewerName" class="form-input" placeholder="e.g. Nimal Perera" required />
+                <input type="text" id="reviewerName" class="form-input" placeholder="e.g. Amila Perera" required />
               </div>
 
               <div class="form-group">
                 <label class="form-label">Your Rating</label>
                 <div class="rating-select">
                   <label class="rating-option">
-                    <input type="radio" name="experienceRating" value="⭐⭐⭐⭐⭐ Excellent (5/5)" checked />
-                    <span class="rating-star-btn">⭐ 5/5 Superb</span>
+                    <input type="radio" name="experienceRating" value="5" checked />
+                    <span class="rating-star-btn">&#11088; 5/5 Superb</span>
                   </label>
                   <label class="rating-option">
-                    <input type="radio" name="experienceRating" value="⭐⭐⭐⭐ Good (4/5)" />
-                    <span class="rating-star-btn">⭐ 4/5 Good</span>
+                    <input type="radio" name="experienceRating" value="4" />
+                    <span class="rating-star-btn">&#11088; 4/5 Good</span>
                   </label>
                   <label class="rating-option">
-                    <input type="radio" name="experienceRating" value="⭐⭐⭐ Nice (3/5)" />
-                    <span class="rating-star-btn">⭐ 3/5 Nice</span>
+                    <input type="radio" name="experienceRating" value="3" />
+                    <span class="rating-star-btn">&#11088; 3/5 Nice</span>
                   </label>
                 </div>
               </div>
@@ -1183,7 +1186,7 @@
     </div>
   </footer>
 
-  <!-- Mobile Bottom Bar (Review targets #review-section directly) -->
+  <!-- Mobile Bottom Bar -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
     <div class="mobile-bottom-grid">
       <a href="index.html" class="mobile-nav-item active">
@@ -1206,18 +1209,35 @@
   </nav>
 
   <script>
+    // Storage safety helper
+    function getStorage(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function setStorage(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch (err) {}
+    }
+
     // Theme Management
     const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const storedTheme = localStorage.getItem('tharu_theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = getStorage('tharu_theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     function applyTheme(theme) {
       if (theme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
+        document.body.setAttribute('data-theme', 'dark');
       } else {
         document.documentElement.removeAttribute('data-theme');
+        document.body.removeAttribute('data-theme');
       }
-      localStorage.setItem('tharu_theme', theme);
+      setStorage('tharu_theme', theme);
     }
 
     if (storedTheme) {
@@ -1226,64 +1246,4 @@
       applyTheme('dark');
     }
 
-    themeToggleBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
-    // Mobile Review Smooth Scrolling & Input Focus
-    const mobileReviewNavLink = document.getElementById('mobileReviewNavLink');
-    if (mobileReviewNavLink) {
-      mobileReviewNavLink.addEventListener('click', (e) => {
-        const reviewSection = document.getElementById('review-section');
-        if (reviewSection) {
-          e.preventDefault();
-          reviewSection.scrollIntoView({ behavior: 'smooth' });
-          setTimeout(() => {
-            const input = document.getElementById('reviewerName');
-            if (input) input.focus();
-          }, 450);
-        }
-      });
-    }
-
-    // Auto-scroll if navigated from external page with #review-section hash
-    window.addEventListener('DOMContentLoaded', () => {
-      if (window.location.hash === '#review-section') {
-        const reviewSection = document.getElementById('review-section');
-        if (reviewSection) {
-          setTimeout(() => {
-            reviewSection.scrollIntoView({ behavior: 'smooth' });
-          }, 200);
-        }
-      }
-    });
-
-    // WhatsApp Feedback Handler
-    function handleWhatsAppReview(e) {
-      e.preventDefault();
-      const name = document.getElementById('reviewerName').value.trim();
-      const rating = document.querySelector('input[name="experienceRating"]:checked')?.value || '⭐⭐⭐⭐⭐ (5/5)';
-      const favoriteItem = document.getElementById('favoriteItem').value.trim();
-      const comment = document.getElementById('reviewComment').value.trim();
-
-      if (!name || !comment) {
-        alert('Please fill out your name and review.');
-        return;
-      }
-
-      let message = `*🌟 Customer Review - Tharu Juice Bar*\n\n`;
-      message += `*Name:* ${name}\n`;
-      message += `*Rating:* ${rating}\n`;
-      if (favoriteItem) message += `*Item:* ${favoriteItem}\n`;
-      message += `*Feedback:* ${comment}\n\n`;
-      message += `_Sent via Tharu Juice Bar Website_`;
-
-      const whatsappUrl = `https://wa.me/94711259586?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-    }
-
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+    if (themeToggleBtn) {
