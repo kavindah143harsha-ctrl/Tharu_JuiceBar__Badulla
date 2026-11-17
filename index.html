@@ -1099,15 +1099,15 @@
                 <label class="form-label">Your Rating</label>
                 <div class="rating-select">
                   <label class="rating-option">
-                    <input type="radio" name="experienceRating" value="⭐⭐⭐⭐⭐ Excellent (5/5)" checked />
+                    <input type="radio" name="experienceRating" value="5" checked />
                     <span class="rating-star-btn">⭐ 5/5 Superb</span>
                   </label>
                   <label class="rating-option">
-                    <input type="radio" name="experienceRating" value="⭐⭐⭐⭐ Good (4/5)" />
+                    <input type="radio" name="experienceRating" value="4" />
                     <span class="rating-star-btn">⭐ 4/5 Good</span>
                   </label>
                   <label class="rating-option">
-                    <input type="radio" name="experienceRating" value="⭐⭐⭐ Nice (3/5)" />
+                    <input type="radio" name="experienceRating" value="3" />
                     <span class="rating-star-btn">⭐ 3/5 Nice</span>
                   </label>
                 </div>
@@ -1205,88 +1205,7 @@
     </div>
   </nav>
 
-  <script>
-    // Theme Management
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const storedTheme = localStorage.getItem('tharu_theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
-      localStorage.setItem('tharu_theme', theme);
-    }
-
-    if (storedTheme) {
-      applyTheme(storedTheme);
-    } else if (prefersDark) {
-      applyTheme('dark');
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
-    // Mobile Review Smooth Scrolling & Input Focus
-    const mobileReviewNavLink = document.getElementById('mobileReviewNavLink');
-    if (mobileReviewNavLink) {
-      mobileReviewNavLink.addEventListener('click', (e) => {
-        const reviewSection = document.getElementById('review-section');
-        if (reviewSection) {
-          e.preventDefault();
-          reviewSection.scrollIntoView({ behavior: 'smooth' });
-          setTimeout(() => {
-            const input = document.getElementById('reviewerName');
-            if (input) input.focus();
-          }, 450);
-        }
-      });
-    }
-
-    // Auto-scroll if navigated from external page with #review-section hash
-    window.addEventListener('DOMContentLoaded', () => {
-      if (window.location.hash === '#review-section') {
-        const reviewSection = document.getElementById('review-section');
-        if (reviewSection) {
-          setTimeout(() => {
-            reviewSection.scrollIntoView({ behavior: 'smooth' });
-          }, 200);
-        }
-      }
-    });
-
-    // WhatsApp Feedback Handler - Unicode Emojis Fix
-    function handleWhatsAppReview(e) {
-      e.preventDefault();
-      const name = document.getElementById('reviewerName').value.trim();
-      const rating = document.querySelector('input[name="experienceRating"]:checked')?.value || '⭐⭐⭐⭐⭐ Excellent (5/5)';
-      const favoriteItem = document.getElementById('favoriteItem').value.trim();
-      const comment = document.getElementById('reviewComment').value.trim();
-
-      if (!name || !comment) {
-        alert('Please fill out your name and review.');
-        return;
-      }
-
-      // Unicode Emojis to ensure formatting never breaks inside HTML files
-      let sparkEmoji = "\u2728"; // 🌟
-
-      let message = sparkEmoji + " Customer Review - Tharu Juice Bar\n\n";
-      message += "*Name:* " + name + "\n";
-      message += "*Rating:* " + rating + "\n";
-      if (favoriteItem) message += "*Item:* " + favoriteItem + "\n";
-      message += "*Feedback:* " + comment + "\n\n";
-      message += "_Sent via Tharu Juice Bar Website_";
-
-      const whatsappUrl = `https://wa.me/94711259586?text=` + encodeURIComponent(message);
-      window.open(whatsappUrl, '_blank');
-    }
-
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
+  <!-- External JavaScript File -->
+  <script src="script.js"></script>
 </body>
 </html>
