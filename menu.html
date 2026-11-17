@@ -242,24 +242,10 @@
     [data-theme="dark"] .theme-icon-dark { display: block !important; }
     [data-theme="dark"] .theme-icon-light { display: none !important; }
 
-    /* Catalog Hero */
+    /* Catalog Hero (Without the badge) */
     .menu-hero {
       padding: 2.5rem 0 0.75rem;
       text-align: center;
-    }
-
-    .menu-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: var(--radius-full);
-      background: var(--mint-light);
-      color: var(--mint);
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      border: 1px solid rgba(46, 125, 50, 0.25);
     }
 
     .menu-title {
@@ -318,7 +304,7 @@
     }
 
     /* -------------------------------------------------------------
-       CLEAN VIEW MODE SWITCHER (CENTERED)
+       VIEW MODE SWITCHER (CENTERED)
     ------------------------------------------------------------- */
     .menu-toolbar {
       display: flex;
@@ -369,7 +355,7 @@
     }
 
     /* -------------------------------------------------------------
-       RELIABLE CATEGORY FILTER BAR WITH COMPANION ARROW BUTTON
+       CATEGORY FILTER BAR WITH COMPANION ARROW
     ------------------------------------------------------------- */
     .filter-bar-wrapper {
       display: flex;
@@ -424,7 +410,7 @@
       box-shadow: 0 4px 16px var(--mint-glow);
     }
 
-    /* Dedicated Non-Overlapping Next Arrow Button */
+    /* Scroll Arrow Button */
     .filter-next-btn {
       width: 40px;
       height: 40px;
@@ -686,8 +672,13 @@
       padding: 2px 7px !important;
     }
 
-    /* Filter Hide Helper */
-    .card-hidden {
+    /* Guaranteed Universal Hide Rules */
+    .menu-card[hidden],
+    .menu-card.card-hidden,
+    .catalog-grid .menu-card[hidden],
+    .catalog-grid .menu-card.card-hidden,
+    .catalog-grid.list-view .menu-card[hidden],
+    .catalog-grid.list-view .menu-card.card-hidden {
       display: none !important;
     }
 
@@ -848,7 +839,7 @@
   <main>
     <section class="menu-hero">
       <div class="container">
-       
+        <!-- Badge removed as requested -->
         <h2 class="menu-title">Our Refreshment Catalog</h2>
         <p class="menu-subtitle">Made to order using natural local ingredients.</p>
 
@@ -880,7 +871,7 @@
           </div>
         </div>
 
-        <!-- Category Filters with Working Companion Arrow Button -->
+        <!-- Category Filters with Companion Arrow Button -->
         <div class="filter-bar-wrapper">
           <div class="category-filter-bar" id="categoryFilterBar">
             <button class="filter-btn active" data-category="all" type="button">All Items</button>
@@ -892,7 +883,6 @@
             <button class="filter-btn" data-category="snack" type="button">Hot Dog Bun</button>
           </div>
 
-          <!-- Non-overlapping interactive arrow button -->
           <button class="filter-next-btn" id="filterScrollRight" type="button" title="See more categories" aria-label="See more categories">
             <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg>
           </button>
@@ -1327,7 +1317,7 @@
   </nav>
 
   <script>
-    // Safe storage helper (prevents crashing in private windows / file:// protocol)
+    // Storage safety helper
     function getStorage(key) {
       try {
         return localStorage.getItem(key);
@@ -1408,7 +1398,7 @@
       });
     }
 
-    // 3. Category Filter Horizontal Scroll Arrow Button
+    // 3. Category Filter Horizontal Scroll Arrow
     const categoryBar = document.getElementById('categoryFilterBar');
     const filterScrollRight = document.getElementById('filterScrollRight');
 
@@ -1419,16 +1409,14 @@
 
         const maxScroll = categoryBar.scrollWidth - categoryBar.clientWidth;
         if (categoryBar.scrollLeft >= maxScroll - 15) {
-          // If at the end, cycle back to the beginning
           categoryBar.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
-          // Otherwise scroll forward
           categoryBar.scrollBy({ left: 180, behavior: 'smooth' });
         }
       });
     }
 
-    // 4. Real-Time Search & Category Filters
+    // 4. Guaranteed Real-Time Search & Category Filters
     const searchInput = document.getElementById('menuSearchInput');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const menuCards = document.querySelectorAll('.menu-card');
@@ -1441,7 +1429,7 @@
       let visibleCount = 0;
 
       menuCards.forEach(card => {
-        const itemCategory = card.getAttribute('data-category');
+        const itemCategory = card.getAttribute('data-category') || '';
         const itemName = (card.getAttribute('data-name') || '').toLowerCase();
         const descEl = card.querySelector('.item-description');
         const itemDesc = descEl ? descEl.textContent.toLowerCase() : '';
@@ -1451,22 +1439,27 @@
 
         if (matchesCategory && matchesSearch) {
           card.classList.remove('card-hidden');
+          card.removeAttribute('hidden');
+          card.style.removeProperty('display');
           visibleCount++;
         } else {
           card.classList.add('card-hidden');
+          card.setAttribute('hidden', '');
+          card.style.setProperty('display', 'none', 'important');
         }
       });
 
       if (noResults) {
-        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        noResults.style.setProperty('display', visibleCount === 0 ? 'block' : 'none', 'important');
       }
     }
 
     filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
         filterButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        currentCategory = btn.getAttribute('data-category');
+        currentCategory = btn.getAttribute('data-category') || 'all';
         filterMenu();
       });
     });
