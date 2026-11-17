@@ -76,9 +76,6 @@
       --text-light: #94a3b8;
     }
 
-    /* -------------------------------------------------------------
-       BASE STYLES
-    ------------------------------------------------------------- */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -101,6 +98,8 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      word-break: normal;
+      overflow-wrap: break-word;
       transition: background-color var(--transition-normal), color var(--transition-normal);
     }
 
@@ -242,7 +241,7 @@
 
     /* Catalog Hero */
     .menu-hero {
-      padding: 3rem 0 1.5rem;
+      padding: 2.5rem 0 1rem;
       text-align: center;
     }
 
@@ -262,27 +261,28 @@
 
     .menu-title {
       font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     .menu-subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       max-width: 580px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1.5rem;
+      line-height: 1.5;
     }
 
     /* Live Search Input */
     .search-wrapper {
       max-width: 560px;
-      margin: 0 auto 1.75rem;
+      margin: 0 auto 1.25rem;
       position: relative;
     }
 
     .search-input {
       width: 100%;
-      padding: 1rem 1.25rem 1rem 3.25rem;
-      font-size: 1.05rem;
+      padding: 0.95rem 1.25rem 0.95rem 3.25rem;
+      font-size: 1rem;
       border-radius: var(--radius-full);
       border: 1px solid var(--glass-border);
       background: var(--glass-surface-elevated);
@@ -314,16 +314,88 @@
       stroke-width: 2.2;
     }
 
-    /* Category Filter Tabs */
+    /* -------------------------------------------------------------
+       CONTROLS BAR: ITEM COUNT & GRID/LIST VIEW TOGGLE
+    ------------------------------------------------------------- */
+    .menu-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+      margin: 0 auto 1rem;
+      padding: 0 4px;
+    }
+
+    .item-counter-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .item-counter-label span {
+      color: var(--mango);
+    }
+
+    .view-mode-toggle {
+      display: inline-flex;
+      align-items: center;
+      background: var(--glass-surface-elevated);
+      padding: 4px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      gap: 3px;
+    }
+
+    .view-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .view-btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+    }
+
+    .view-btn.active {
+      background: var(--mango);
+      color: #ffffff;
+      box-shadow: 0 2px 10px var(--mango-glow);
+    }
+
+    /* -------------------------------------------------------------
+       SCROLLABLE FILTER BAR WITH RIGHT ARROW BUTTON
+    ------------------------------------------------------------- */
+    .filter-scroll-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
     .category-filter-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
       overflow-x: auto;
-      padding: 6px 4px 18px;
+      scroll-behavior: smooth;
+      padding: 6px 45px 6px 6px; /* Right padding preserves room for arrow */
       scrollbar-width: none;
       -ms-overflow-style: none;
+      width: 100%;
     }
 
     .category-filter-bar::-webkit-scrollbar {
@@ -337,12 +409,13 @@
       background: var(--glass-surface);
       border: 1px solid var(--glass-border);
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       backdrop-filter: var(--blur-strength);
       transition: all var(--transition-fast);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      flex-shrink: 0;
     }
 
     .filter-btn:hover {
@@ -358,15 +431,65 @@
       box-shadow: 0 4px 16px var(--mint-glow);
     }
 
-    /* Catalog Grid & Cards */
+    /* Right & Left Scroll Arrow Buttons */
+    .filter-arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-surface-elevated);
+      color: var(--mango);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      backdrop-filter: var(--blur-strength);
+      -webkit-backdrop-filter: var(--blur-strength);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      transition: all var(--transition-fast);
+    }
+
+    .filter-arrow-btn:hover {
+      background: var(--mango);
+      color: #ffffff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .filter-arrow-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2.6;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .filter-arrow-right {
+      right: 0;
+    }
+
+    .filter-arrow-left {
+      left: 0;
+      display: none; /* revealed via JS when user scrolls */
+    }
+
+    /* -------------------------------------------------------------
+       GRID VIEW (DEFAULT)
+    ------------------------------------------------------------- */
     .catalog-section {
-      padding: 1rem 0 4rem;
+      padding: 0.5rem 0 4rem;
     }
 
     .catalog-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
+      transition: all var(--transition-normal);
     }
 
     .menu-card {
@@ -399,6 +522,7 @@
       overflow: hidden;
       margin-bottom: 1rem;
       background: rgba(148, 163, 184, 0.15);
+      flex-shrink: 0;
     }
 
     .card-img-wrap img {
@@ -436,6 +560,10 @@
       background: rgba(16, 27, 20, 0.88);
       border-color: rgba(255, 255, 255, 0.15);
       color: var(--mint);
+    }
+
+    .list-inline-badge {
+      display: none; /* Only visible in list view */
     }
 
     .card-details {
@@ -488,6 +616,82 @@
       padding: 4px 10px;
       border-radius: var(--radius-sm);
       border: 1px solid rgba(46, 125, 50, 0.2);
+    }
+
+    /* -------------------------------------------------------------
+       NEW FEATURE: COMPACT LIST VIEW LAYOUT
+    ------------------------------------------------------------- */
+    .catalog-grid.list-view {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .catalog-grid.list-view .menu-card {
+      flex-direction: row;
+      align-items: center;
+      padding: 0.75rem 0.95rem;
+      gap: 1rem;
+      border-radius: var(--radius-md);
+      min-height: 96px;
+    }
+
+    .catalog-grid.list-view .card-img-wrap {
+      width: 82px;
+      height: 82px;
+      min-width: 82px;
+      margin-bottom: 0;
+      border-radius: var(--radius-sm);
+    }
+
+    .catalog-grid.list-view .card-floating-badge {
+      display: none;
+    }
+
+    .catalog-grid.list-view .list-inline-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--mint);
+      margin-bottom: 2px;
+    }
+
+    .catalog-grid.list-view .item-name {
+      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .catalog-grid.list-view .item-description {
+      font-size: 0.8rem;
+      margin-bottom: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.35;
+    }
+
+    .catalog-grid.list-view .card-bottom {
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      padding-top: 0;
+      border-top: none;
+      gap: 4px;
+      flex-shrink: 0;
+      margin-left: 0.5rem;
+    }
+
+    .catalog-grid.list-view .price-tag {
+      font-size: 1.18rem;
+      white-space: nowrap;
+    }
+
+    .catalog-grid.list-view .fresh-tag {
+      font-size: 0.68rem;
+      padding: 2px 7px;
     }
 
     .no-results-box {
@@ -586,7 +790,6 @@
       body { padding-bottom: 74px; }
       .nav-links { display: none; }
       .mobile-bottom-nav { display: block; }
-      .category-filter-bar { justify-content: flex-start; }
     }
   </style>
 </head>
@@ -650,7 +853,7 @@
       <div class="container">
         <div class="menu-badge">Mint Freshness • Real Fruit Quality</div>
         <h2 class="menu-title">Our Refreshment Catalog</h2>
-        <p class="menu-subtitle">Every juice, shake, and snack is freshly made to order using natural local ingredients.</p>
+        <p class="menu-subtitle">Made to order using natural local ingredients.</p>
 
         <!-- Live Instant Search Bar -->
         <div class="search-wrapper">
@@ -666,15 +869,43 @@
           />
         </div>
 
-        <!-- Category Filters -->
-        <div class="category-filter-bar" id="categoryFilterBar">
-          <button class="filter-btn active" data-category="all">All Items</button>
-          <button class="filter-btn" data-category="juice">Fresh Juices</button>
-          <button class="filter-btn" data-category="milkshake">Milkshakes</button>
-          <button class="filter-btn" data-category="icecream">Ice Cream</button>
-          <button class="filter-btn" data-category="special">Special Drinks</button>
-          <button class="filter-btn" data-category="smoothie">Smoothies</button>
-          <button class="filter-btn" data-category="snack">Hot Dog Bun</button>
+        <!-- NEW: Toolbar with Item Count and Grid/List View Switcher -->
+        <div class="menu-toolbar">
+          <div class="item-counter-label">
+            Showing <span id="visibleCountDisplay">23</span> refreshments
+          </div>
+
+          <div class="view-mode-toggle" aria-label="Choose layout view">
+            <button class="view-btn active" id="viewGridBtn" data-view="grid" title="Cards Grid View">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+              <span>Grid</span>
+            </button>
+            <button class="view-btn" id="viewListBtn" data-view="list" title="Compact List View">
+              <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              <span>List</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- NEW: Category Filters with Interactive Scroll Right Arrow -->
+        <div class="filter-scroll-container">
+          <button class="filter-arrow-btn filter-arrow-left" id="filterScrollLeft" title="Scroll left" aria-label="Scroll categories left">
+            <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+
+          <div class="category-filter-bar" id="categoryFilterBar">
+            <button class="filter-btn active" data-category="all">All Items</button>
+            <button class="filter-btn" data-category="juice">Fresh Juices</button>
+            <button class="filter-btn" data-category="milkshake">Milkshakes</button>
+            <button class="filter-btn" data-category="icecream">Ice Cream</button>
+            <button class="filter-btn" data-category="special">Special Drinks</button>
+            <button class="filter-btn" data-category="smoothie">Smoothies</button>
+            <button class="filter-btn" data-category="snack">Hot Dog Bun</button>
+          </div>
+
+          <button class="filter-arrow-btn filter-arrow-right" id="filterScrollRight" title="Scroll to see all categories" aria-label="Scroll to see all categories">
+            <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg>
+          </button>
         </div>
       </div>
     </section>
@@ -691,6 +922,7 @@
               <img src="images/mango-juice.jpg" alt="Fresh Mango Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Fresh Juice</span>
               <h3 class="item-name">Mango Juice</h3>
               <p class="item-description">Sweet, tropical ripe mangoes blended smooth for maximum refreshment.</p>
             </div>
@@ -706,6 +938,7 @@
               <img src="images/pineapple-juice.jpg" alt="Pineapple Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Fresh Juice</span>
               <h3 class="item-name">Pineapple Juice</h3>
               <p class="item-description">Tangy and sweet fresh pineapples cold-pressed to brighten up your day.</p>
             </div>
@@ -721,6 +954,7 @@
               <img src="images/watermelon-juice.jpg" alt="Chilled Watermelon Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Fresh Juice</span>
               <h3 class="item-name">Watermelon Juice</h3>
               <p class="item-description">Ultra-hydrating, naturally sweet, chilled watermelon nectar.</p>
             </div>
@@ -736,6 +970,7 @@
               <img src="images/lime-juice.jpg" alt="Zesty Lime Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Fresh Juice</span>
               <h3 class="item-name">Lime Juice</h3>
               <p class="item-description">Zesty Sri Lankan lime, freshly squeezed with the perfect balance of sweet and sour.</p>
             </div>
@@ -751,6 +986,7 @@
               <img src="images/orange-juice.jpg" alt="Fresh Orange Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Fresh Juice</span>
               <h3 class="item-name">Orange Juice</h3>
               <p class="item-description">Sun-kissed citrus goodness packed with pure energy and natural flavor.</p>
             </div>
@@ -766,6 +1002,7 @@
               <img src="images/passion-juice.jpg" alt="Passion Fruit Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Fresh Juice</span>
               <h3 class="item-name">Passion Juice</h3>
               <p class="item-description">Aromatic passion fruit blended into a tart and invigorating tropical drink.</p>
             </div>
@@ -781,6 +1018,7 @@
               <img src="images/papaya-juice.jpg" alt="Fresh Papaya Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Fresh Juice</span>
               <h3 class="item-name">Papaya Juice</h3>
               <p class="item-description">Smooth ripe red papaya juice, naturally gentle and rich in healthy enzymes.</p>
             </div>
@@ -796,6 +1034,7 @@
               <img src="images/banana-juice.jpg" alt="Natural Banana Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Fresh Juice</span>
               <h3 class="item-name">Banana Juice</h3>
               <p class="item-description">Nutritious and creamy local bananas blended for an instant natural boost.</p>
             </div>
@@ -811,6 +1050,7 @@
               <img src="images/mixed-fruit-juice.jpg" alt="Mixed Fruit Juice" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Special Blend</span>
               <h3 class="item-name">Mixed Fruit Juice</h3>
               <p class="item-description">Delicious harmonic fusion of papaya, mango, pineapple, and watermelon together.</p>
             </div>
@@ -827,6 +1067,7 @@
               <img src="images/vanilla-milkshake.jpg" alt="Vanilla Milkshake" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Milkshake</span>
               <h3 class="item-name">Vanilla Milkshake</h3>
               <p class="item-description">Classic creamy vanilla blended with fresh chilled milk and vanilla essence.</p>
             </div>
@@ -842,6 +1083,7 @@
               <img src="images/chocolate-milkshake.jpg" alt="Chocolate Milkshake" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Milkshake</span>
               <h3 class="item-name">Chocolate Milkshake</h3>
               <p class="item-description">Decadent chocolate syrup and cocoa blended velvety thick for cocoa lovers.</p>
             </div>
@@ -857,6 +1099,7 @@
               <img src="images/mango-milkshake.jpg" alt="Mango Milkshake" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Milkshake</span>
               <h3 class="item-name">Mango Milkshake</h3>
               <p class="item-description">Luscious sweet mango pulp churned with rich cold milk and ice cream.</p>
             </div>
@@ -872,6 +1115,7 @@
               <img src="images/banana-milkshake.jpg" alt="Banana Milkshake" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Milkshake</span>
               <h3 class="item-name">Banana Milkshake</h3>
               <p class="item-description">Thick, filling, and creamy potassium-packed banana shake delight.</p>
             </div>
@@ -887,6 +1131,7 @@
               <img src="images/chocolate-cookies-milkshake.jpg" alt="Chocolate Cookies Milkshake" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Milkshake</span>
               <h3 class="item-name">Chocolate Cookies Milkshake</h3>
               <p class="item-description">Crunchy chocolate cookies blended into a thick, indulgent, creamy shake.</p>
             </div>
@@ -903,6 +1148,7 @@
               <img src="images/vanilla-icecream.jpg" alt="Vanilla Ice Cream" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Ice Cream</span>
               <h3 class="item-name">Vanilla Ice Cream</h3>
               <p class="item-description">Silky and sweet classic vanilla scoops served delightfully chilled.</p>
             </div>
@@ -918,6 +1164,7 @@
               <img src="images/chocolate-icecream.jpg" alt="Chocolate Ice Cream" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Ice Cream</span>
               <h3 class="item-name">Chocolate Ice Cream</h3>
               <p class="item-description">Rich and cocoa-heavy scoops to cool you down in pure dessert delight.</p>
             </div>
@@ -933,6 +1180,7 @@
               <img src="images/strawberry-icecream.jpg" alt="Strawberry Ice Cream" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Ice Cream</span>
               <h3 class="item-name">Strawberry Ice Cream</h3>
               <p class="item-description">Berry-sweet, pretty pink strawberry scoops loved by kids and adults.</p>
             </div>
@@ -949,6 +1197,7 @@
               <img src="images/falooda.jpg" alt="Sri Lankan Falooda" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Special Drink</span>
               <h3 class="item-name">Falooda</h3>
               <p class="item-description">Rose syrup milk, basil seeds (kasakasa), vermicelli, and a rich scoop of ice cream on top.</p>
             </div>
@@ -964,6 +1213,7 @@
               <img src="images/fruit-salad-icecream.jpg" alt="Fruit Salad with Ice Cream" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Special Dessert</span>
               <h3 class="item-name">Fruit Salad with Ice Cream</h3>
               <p class="item-description">Diced fresh seasonal fruits topped with a luscious scoop of creamy ice cream.</p>
             </div>
@@ -980,6 +1230,7 @@
               <img src="images/mango-smoothie.jpg" alt="Mango Smoothie" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Smoothie</span>
               <h3 class="item-name">Mango Smoothie</h3>
               <p class="item-description">Thick, golden, velvety mango blend with natural yogurt for health-conscious diners.</p>
             </div>
@@ -995,6 +1246,7 @@
               <img src="images/banana-smoothie.jpg" alt="Banana Smoothie" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Smoothie</span>
               <h3 class="item-name">Banana Smoothie</h3>
               <p class="item-description">Super creamy banana and yogurt blend offering lasting sustained stamina.</p>
             </div>
@@ -1010,6 +1262,7 @@
               <img src="images/avocado-smoothie.jpg" alt="Avocado Smoothie" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Smoothie</span>
               <h3 class="item-name">Avocado Smoothie</h3>
               <p class="item-description">Pure buttery avocado whipped smooth with milk and a touch of sweetness. Rich in good fats.</p>
             </div>
@@ -1026,6 +1279,7 @@
               <img src="images/hotdog-bun.jpg" alt="Toasted Hot Dog Bun" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400?text=Tharu+Juice+Bar';" />
             </div>
             <div class="card-details">
+              <span class="list-inline-badge">Warm Snack</span>
               <h3 class="item-name">Hot Dog Bun</h3>
               <p class="item-description">Warm, freshly toasted soft bun filled with a savory sausage, mustard, and tomato sauce.</p>
             </div>
@@ -1060,7 +1314,7 @@
     </div>
   </footer>
 
-  <!-- Mobile Sticky Bottom Nav (Review points directly to index.html#review-section) -->
+  <!-- Mobile Sticky Bottom Nav -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
     <div class="mobile-bottom-grid">
       <a href="index.html" class="mobile-nav-item">
@@ -1075,85 +1329,4 @@
         <svg viewBox="0 0 24 24" fill="none"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
         <span>Maps</span>
       </a>
-      <a href="index.html#review-section" class="mobile-nav-item">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        <span>Review</span>
-      </a>
-    </div>
-  </nav>
-
-  <script>
-    // Theme Management
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const storedTheme = localStorage.getItem('tharu_theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
-      localStorage.setItem('tharu_theme', theme);
-    }
-
-    if (storedTheme) {
-      applyTheme(storedTheme);
-    } else if (prefersDark) {
-      applyTheme('dark');
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-
-    // Real-Time Search & Category Filters
-    const searchInput = document.getElementById('menuSearchInput');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const menuCards = document.querySelectorAll('.menu-card');
-    const noResults = document.getElementById('noResults');
-
-    let currentCategory = 'all';
-    let searchQuery = '';
-
-    function filterMenu() {
-      let visibleCount = 0;
-
-      menuCards.forEach(card => {
-        const itemCategory = card.getAttribute('data-category');
-        const itemName = card.getAttribute('data-name').toLowerCase();
-        const itemDesc = card.querySelector('.item-description').textContent.toLowerCase();
-
-        const matchesCategory = (currentCategory === 'all' || itemCategory === currentCategory);
-        const matchesSearch = itemName.includes(searchQuery) || itemDesc.includes(searchQuery);
-
-        if (matchesCategory && matchesSearch) {
-          card.style.display = 'flex';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-    }
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentCategory = btn.getAttribute('data-category');
-        filterMenu();
-      });
-    });
-
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.toLowerCase().trim();
-      filterMenu();
-    });
-
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+      <a href="index.html#review-sec
