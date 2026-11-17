@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Tharu Juice Bar | Fresh & Natural Refreshments - Badulla</title>
   <meta name="description" content="Tharu Juice Bar in Badulla offers fresh fruit juices, rich milkshakes, smoothies, and ice creams. Visit us at Clinic Road, Badulla or view our menu." />
@@ -54,9 +53,7 @@
       --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    [data-theme="dark"],
-    html[data-theme="dark"],
-    body[data-theme="dark"] {
+    [data-theme="dark"] {
       --mint: #3ddc84;
       --mint-hover: #34c776;
       --mint-light: rgba(61, 220, 132, 0.16);
@@ -247,9 +244,8 @@
     }
 
     .theme-icon-dark { display: none; }
-    .theme-icon-light { display: block; }
-    [data-theme="dark"] .theme-icon-dark { display: block !important; }
-    [data-theme="dark"] .theme-icon-light { display: none !important; }
+    [data-theme="dark"] .theme-icon-dark { display: block; }
+    [data-theme="dark"] .theme-icon-light { display: none; }
 
     /* Hero */
     .hero-section {
@@ -668,6 +664,7 @@
       color: var(--text-muted);
     }
 
+    /* Review Card Focus Pulse */
     .review-form-card {
       position: relative;
     }
@@ -899,7 +896,7 @@
 
         <!-- Theme Toggle -->
         <div class="header-actions">
-          <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
             <svg class="theme-icon-light" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -1087,7 +1084,7 @@
             </div>
           </div>
 
-          <!-- Customer Review & Comments Form -->
+          <!-- Customer Review & Comments Form (Targets Directly via #review-section) -->
           <div class="glass-card review-form-card" id="review-section">
             <h3>Customer Review &amp; Comments</h3>
             <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.5rem;">Your review goes straight to our team on WhatsApp!</p>
@@ -1095,7 +1092,7 @@
             <form id="whatsappReviewForm" onsubmit="handleWhatsAppReview(event)">
               <div class="form-group">
                 <label for="reviewerName" class="form-label">Your Name *</label>
-                <input type="text" id="reviewerName" class="form-input" placeholder="e.g. Amila Perera" required />
+                <input type="text" id="reviewerName" class="form-input" placeholder="e.g. Nimal Perera" required />
               </div>
 
               <div class="form-group">
@@ -1103,15 +1100,15 @@
                 <div class="rating-select">
                   <label class="rating-option">
                     <input type="radio" name="experienceRating" value="5" checked />
-                    <span class="rating-star-btn">&#11088; 5/5 Superb</span>
+                    <span class="rating-star-btn">⭐ 5/5 Superb</span>
                   </label>
                   <label class="rating-option">
                     <input type="radio" name="experienceRating" value="4" />
-                    <span class="rating-star-btn">&#11088; 4/5 Good</span>
+                    <span class="rating-star-btn">⭐ 4/5 Good</span>
                   </label>
                   <label class="rating-option">
                     <input type="radio" name="experienceRating" value="3" />
-                    <span class="rating-star-btn">&#11088; 3/5 Nice</span>
+                    <span class="rating-star-btn">⭐ 3/5 Nice</span>
                   </label>
                 </div>
               </div>
@@ -1146,104 +1143,4 @@
         <div class="footer-brand">
           <div class="brand-logo" style="margin-bottom: 0.5rem;">
             <div class="brand-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
-                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
-              </svg>
-            </div>
-            <div class="brand-text">
-              <h1 style="font-size: 1.15rem;">Tharu Juice Bar</h1>
-              <span>Badulla, Sri Lanka</span>
-            </div>
-          </div>
-          <p>Handcrafted fresh juices, wholesome milkshakes, and delicious snacks serving refreshing moments to Badulla city.</p>
-        </div>
-
-        <div class="footer-col">
-          <h5>Quick Links</h5>
-          <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="menu.html">View Our Menu</a></li>
-            <li><a href="#review-section">Leave a Review</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h5>Visit Us</h5>
-          <ul class="footer-links">
-            <li><span style="color: var(--text-muted);">NO 88, Clinic Road, Adara Mawatha, Badulla</span></li>
-            <li><a href="tel:+94711259586">+94 71 125 9586</a></li>
-            <li><a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener">Google Maps Location ↗</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; <span id="currentYear"></span> Tharu Juice Bar. All rights reserved.</p>
-        <p>Fresh &amp; Natural Refreshments • Badulla, 90000</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Mobile Bottom Bar -->
-  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
-    <div class="mobile-bottom-grid">
-      <a href="index.html" class="mobile-nav-item active">
-        <svg viewBox="0 0 24 24" fill="none"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-        <span>Home</span>
-      </a>
-      <a href="menu.html" class="mobile-nav-item">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
-        <span>Menu</span>
-      </a>
-      <a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener" class="mobile-nav-item">
-        <svg viewBox="0 0 24 24" fill="none"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
-        <span>Maps</span>
-      </a>
-      <a href="#review-section" class="mobile-nav-item" id="mobileReviewNavLink">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        <span>Review</span>
-      </a>
-    </div>
-  </nav>
-
-  <script>
-    // Storage safety helper
-    function getStorage(key) {
-      try {
-        return localStorage.getItem(key);
-      } catch (err) {
-        return null;
-      }
-    }
-
-    function setStorage(key, value) {
-      try {
-        localStorage.setItem(key, value);
-      } catch (err) {}
-    }
-
-    // Theme Management
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const storedTheme = getStorage('tharu_theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.body.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-        document.body.removeAttribute('data-theme');
-      }
-      setStorage('tharu_theme', theme);
-    }
-
-    if (storedTheme) {
-      applyTheme(storedTheme);
-    } else if (prefersDark) {
-      applyTheme('dark');
-    }
-
-    if (themeToggleBtn) {
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
