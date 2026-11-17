@@ -1259,7 +1259,7 @@
       }
     });
 
-    // WhatsApp Feedback Handler - FIXED WITH encodeURIComponent FOR PROPER EMOJIS
+    // WhatsApp Feedback Handler - Unicode Emojis Fix
     function handleWhatsAppReview(e) {
       e.preventDefault();
       const name = document.getElementById('reviewerName').value.trim();
@@ -1272,14 +1272,17 @@
         return;
       }
 
-      let message = `*🌟 Customer Review - Tharu Juice Bar*\n\n`;
-      message += `*Name:* ${name}\n`;
-      message += `*Rating:* ${rating}\n`;
-      if (favoriteItem) message += `*Item:* ${favoriteItem}\n`;
-      message += `*Feedback:* ${comment}\n\n`;
-      message += `_Sent via Tharu Juice Bar Website_`;
+      // Unicode Emojis to ensure formatting never breaks inside HTML files
+      let sparkEmoji = "\u2728"; // 🌟
 
-      const whatsappUrl = `https://wa.me/94711259586?text=${encodeURIComponent(message)}`;
+      let message = sparkEmoji + " Customer Review - Tharu Juice Bar\n\n";
+      message += "*Name:* " + name + "\n";
+      message += "*Rating:* " + rating + "\n";
+      if (favoriteItem) message += "*Item:* " + favoriteItem + "\n";
+      message += "*Feedback:* " + comment + "\n\n";
+      message += "_Sent via Tharu Juice Bar Website_";
+
+      const whatsappUrl = `https://wa.me/94711259586?text=` + encodeURIComponent(message);
       window.open(whatsappUrl, '_blank');
     }
 
