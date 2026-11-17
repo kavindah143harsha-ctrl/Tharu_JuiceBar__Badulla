@@ -29,8 +29,8 @@
       --bg-base: #f8faf9;
       --bg-gradient: radial-gradient(circle at 10% 15%, rgba(46, 125, 50, 0.08) 0%, rgba(255, 122, 0, 0.06) 40%, rgba(240, 253, 244, 0.6) 75%, #ffffff 100%);
       
-      --glass-surface: rgba(255, 255, 255, 0.78);
-      --glass-surface-elevated: rgba(255, 255, 255, 0.92);
+      --glass-surface: rgba(255, 255, 255, 0.82);
+      --glass-surface-elevated: rgba(255, 255, 255, 0.94);
       --glass-border: rgba(255, 255, 255, 0.85);
       --glass-border-subtle: rgba(226, 232, 240, 0.8);
       --glass-shadow: 0 10px 32px -5px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
@@ -50,7 +50,9 @@
       --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    [data-theme="dark"] {
+    [data-theme="dark"],
+    html[data-theme="dark"],
+    body[data-theme="dark"] {
       --mint: #3ddc84;
       --mint-hover: #34c776;
       --mint-light: rgba(61, 220, 132, 0.16);
@@ -64,10 +66,10 @@
       --bg-base: #070c08;
       --bg-gradient: radial-gradient(circle at 12% 18%, rgba(46, 125, 50, 0.24) 0%, rgba(20, 33, 24, 0.75) 45%, #070c08 100%);
       
-      --glass-surface: rgba(16, 27, 20, 0.78);
-      --glass-surface-elevated: rgba(24, 38, 29, 0.88);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --glass-border-subtle: rgba(255, 255, 255, 0.07);
+      --glass-surface: rgba(16, 27, 20, 0.88);
+      --glass-surface-elevated: rgba(24, 38, 29, 0.95);
+      --glass-border: rgba(255, 255, 255, 0.14);
+      --glass-border-subtle: rgba(255, 255, 255, 0.08);
       --glass-shadow: 0 10px 32px -5px rgba(0, 0, 0, 0.55), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
       --glass-shadow-hover: 0 18px 42px -4px var(--mango-glow), 0 8px 20px -2px var(--mint-glow);
 
@@ -236,12 +238,13 @@
     }
 
     .theme-icon-dark { display: none; }
-    [data-theme="dark"] .theme-icon-dark { display: block; }
-    [data-theme="dark"] .theme-icon-light { display: none; }
+    .theme-icon-light { display: block; }
+    [data-theme="dark"] .theme-icon-dark { display: block !important; }
+    [data-theme="dark"] .theme-icon-light { display: none !important; }
 
     /* Catalog Hero */
     .menu-hero {
-      padding: 2.5rem 0 1rem;
+      padding: 2.5rem 0 0.75rem;
       text-align: center;
     }
 
@@ -315,25 +318,13 @@
     }
 
     /* -------------------------------------------------------------
-       CONTROLS BAR: ITEM COUNT & GRID/LIST VIEW TOGGLE
+       CLEAN VIEW MODE SWITCHER (CENTERED)
     ------------------------------------------------------------- */
     .menu-toolbar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      max-width: 100%;
-      margin: 0 auto 1rem;
-      padding: 0 4px;
-    }
-
-    .item-counter-label {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    .item-counter-label span {
-      color: var(--mango);
+      justify-content: center;
+      margin: 0 auto 1.25rem;
     }
 
     .view-mode-toggle {
@@ -344,22 +335,23 @@
       border-radius: var(--radius-full);
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-shadow);
-      gap: 3px;
+      gap: 4px;
     }
 
     .view-btn {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
+      padding: 7px 18px;
       border-radius: var(--radius-full);
       border: none;
       background: transparent;
       color: var(--text-muted);
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 700;
       cursor: pointer;
       transition: all var(--transition-fast);
+      user-select: none;
     }
 
     .view-btn svg {
@@ -377,13 +369,14 @@
     }
 
     /* -------------------------------------------------------------
-       SCROLLABLE FILTER BAR WITH RIGHT ARROW BUTTON
+       RELIABLE CATEGORY FILTER BAR WITH COMPANION ARROW BUTTON
     ------------------------------------------------------------- */
-    .filter-scroll-container {
-      position: relative;
+    .filter-bar-wrapper {
       display: flex;
       align-items: center;
-      margin-bottom: 1.25rem;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      width: 100%;
     }
 
     .category-filter-bar {
@@ -392,10 +385,10 @@
       gap: 10px;
       overflow-x: auto;
       scroll-behavior: smooth;
-      padding: 6px 45px 6px 6px; /* Right padding preserves room for arrow */
+      padding: 4px 2px;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      width: 100%;
+      flex-grow: 1;
     }
 
     .category-filter-bar::-webkit-scrollbar {
@@ -431,13 +424,10 @@
       box-shadow: 0 4px 16px var(--mint-glow);
     }
 
-    /* Right & Left Scroll Arrow Buttons */
-    .filter-arrow-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 38px;
-      height: 38px;
+    /* Dedicated Non-Overlapping Next Arrow Button */
+    .filter-next-btn {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: 1px solid var(--glass-border);
       background: var(--glass-surface-elevated);
@@ -446,20 +436,21 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 10;
+      flex-shrink: 0;
       backdrop-filter: var(--blur-strength);
       -webkit-backdrop-filter: var(--blur-strength);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      box-shadow: var(--glass-shadow);
       transition: all var(--transition-fast);
     }
 
-    .filter-arrow-btn:hover {
+    .filter-next-btn:hover {
       background: var(--mango);
       color: #ffffff;
-      transform: translateY(-50%) scale(1.08);
+      transform: scale(1.08);
+      box-shadow: 0 4px 14px var(--mango-glow);
     }
 
-    .filter-arrow-btn svg {
+    .filter-next-btn svg {
       width: 20px;
       height: 20px;
       stroke: currentColor;
@@ -469,17 +460,8 @@
       stroke-linejoin: round;
     }
 
-    .filter-arrow-right {
-      right: 0;
-    }
-
-    .filter-arrow-left {
-      left: 0;
-      display: none; /* revealed via JS when user scrolls */
-    }
-
     /* -------------------------------------------------------------
-       GRID VIEW (DEFAULT)
+       CATALOG GRID VIEW (DEFAULT)
     ------------------------------------------------------------- */
     .catalog-section {
       padding: 0.5rem 0 4rem;
@@ -563,7 +545,7 @@
     }
 
     .list-inline-badge {
-      display: none; /* Only visible in list view */
+      display: none;
     }
 
     .card-details {
@@ -619,79 +601,94 @@
     }
 
     /* -------------------------------------------------------------
-       NEW FEATURE: COMPACT LIST VIEW LAYOUT
+       COMPACT LIST VIEW STYLES
     ------------------------------------------------------------- */
     .catalog-grid.list-view {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.9rem !important;
     }
 
     .catalog-grid.list-view .menu-card {
-      flex-direction: row;
-      align-items: center;
-      padding: 0.75rem 0.95rem;
-      gap: 1rem;
-      border-radius: var(--radius-md);
-      min-height: 96px;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      padding: 0.8rem 1rem !important;
+      gap: 1rem !important;
+      border-radius: var(--radius-md) !important;
+      min-height: 94px !important;
     }
 
     .catalog-grid.list-view .card-img-wrap {
-      width: 82px;
-      height: 82px;
-      min-width: 82px;
-      margin-bottom: 0;
-      border-radius: var(--radius-sm);
+      width: 82px !important;
+      height: 82px !important;
+      min-width: 82px !important;
+      max-width: 82px !important;
+      margin-bottom: 0 !important;
+      border-radius: var(--radius-sm) !important;
     }
 
     .catalog-grid.list-view .card-floating-badge {
-      display: none;
+      display: none !important;
     }
 
     .catalog-grid.list-view .list-inline-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--mint);
-      margin-bottom: 2px;
+      display: inline-block !important;
+      font-size: 0.7rem !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.04em !important;
+      color: var(--mint) !important;
+      margin-bottom: 2px !important;
+    }
+
+    .catalog-grid.list-view .card-details {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
     }
 
     .catalog-grid.list-view .item-name {
-      font-size: 1.05rem;
-      margin-bottom: 0.15rem;
+      font-size: 1.05rem !important;
+      margin-bottom: 0.15rem !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
     }
 
     .catalog-grid.list-view .item-description {
-      font-size: 0.8rem;
-      margin-bottom: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      line-height: 1.35;
+      font-size: 0.8rem !important;
+      margin-bottom: 0 !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      line-height: 1.35 !important;
     }
 
     .catalog-grid.list-view .card-bottom {
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: center;
-      padding-top: 0;
-      border-top: none;
-      gap: 4px;
-      flex-shrink: 0;
-      margin-left: 0.5rem;
+      flex-direction: column !important;
+      align-items: flex-end !important;
+      justify-content: center !important;
+      padding-top: 0 !important;
+      border-top: none !important;
+      gap: 4px !important;
+      flex-shrink: 0 !important;
+      margin-left: 0.5rem !important;
     }
 
     .catalog-grid.list-view .price-tag {
-      font-size: 1.18rem;
-      white-space: nowrap;
+      font-size: 1.2rem !important;
+      white-space: nowrap !important;
     }
 
     .catalog-grid.list-view .fresh-tag {
-      font-size: 0.68rem;
-      padding: 2px 7px;
+      font-size: 0.68rem !important;
+      padding: 2px 7px !important;
+    }
+
+    /* Filter Hide Helper */
+    .card-hidden {
+      display: none !important;
     }
 
     .no-results-box {
@@ -826,7 +823,7 @@
 
         <!-- Theme Toggle Switch -->
         <div class="header-actions">
-          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
+          <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
             <svg class="theme-icon-light" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -869,41 +866,34 @@
           />
         </div>
 
-        <!-- NEW: Toolbar with Item Count and Grid/List View Switcher -->
+        <!-- Clean Grid & List View Toggle Switch -->
         <div class="menu-toolbar">
-          <div class="item-counter-label">
-            Showing <span id="visibleCountDisplay">23</span> refreshments
-          </div>
-
           <div class="view-mode-toggle" aria-label="Choose layout view">
-            <button class="view-btn active" id="viewGridBtn" data-view="grid" title="Cards Grid View">
+            <button class="view-btn active" id="viewGridBtn" type="button" title="Cards Grid View">
               <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
-              <span>Grid</span>
+              <span>Grid View</span>
             </button>
-            <button class="view-btn" id="viewListBtn" data-view="list" title="Compact List View">
+            <button class="view-btn" id="viewListBtn" type="button" title="Compact List View">
               <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-              <span>List</span>
+              <span>List View</span>
             </button>
           </div>
         </div>
 
-        <!-- NEW: Category Filters with Interactive Scroll Right Arrow -->
-        <div class="filter-scroll-container">
-          <button class="filter-arrow-btn filter-arrow-left" id="filterScrollLeft" title="Scroll left" aria-label="Scroll categories left">
-            <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"></path></svg>
-          </button>
-
+        <!-- Category Filters with Working Companion Arrow Button -->
+        <div class="filter-bar-wrapper">
           <div class="category-filter-bar" id="categoryFilterBar">
-            <button class="filter-btn active" data-category="all">All Items</button>
-            <button class="filter-btn" data-category="juice">Fresh Juices</button>
-            <button class="filter-btn" data-category="milkshake">Milkshakes</button>
-            <button class="filter-btn" data-category="icecream">Ice Cream</button>
-            <button class="filter-btn" data-category="special">Special Drinks</button>
-            <button class="filter-btn" data-category="smoothie">Smoothies</button>
-            <button class="filter-btn" data-category="snack">Hot Dog Bun</button>
+            <button class="filter-btn active" data-category="all" type="button">All Items</button>
+            <button class="filter-btn" data-category="juice" type="button">Fresh Juices</button>
+            <button class="filter-btn" data-category="milkshake" type="button">Milkshakes</button>
+            <button class="filter-btn" data-category="icecream" type="button">Ice Cream</button>
+            <button class="filter-btn" data-category="special" type="button">Special Drinks</button>
+            <button class="filter-btn" data-category="smoothie" type="button">Smoothies</button>
+            <button class="filter-btn" data-category="snack" type="button">Hot Dog Bun</button>
           </div>
 
-          <button class="filter-arrow-btn filter-arrow-right" id="filterScrollRight" title="Scroll to see all categories" aria-label="Scroll to see all categories">
+          <!-- Non-overlapping interactive arrow button -->
+          <button class="filter-next-btn" id="filterScrollRight" type="button" title="See more categories" aria-label="See more categories">
             <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg>
           </button>
         </div>
@@ -1289,7 +1279,7 @@
             </div>
           </div>
 
-          <!-- No results fallback -->
+          <!-- Fallback when no item matches search -->
           <div class="no-results-box" id="noResults">
             <h3>No Refreshments Found</h3>
             <p>Try searching for another keyword like "mango", "ice cream", or switch category.</p>
@@ -1329,4 +1319,169 @@
         <svg viewBox="0 0 24 24" fill="none"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
         <span>Maps</span>
       </a>
-      <a href="index.html#review-sec
+      <a href="index.html#review-section" class="mobile-nav-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Review</span>
+      </a>
+    </div>
+  </nav>
+
+  <script>
+    // Safe storage helper (prevents crashing in private windows / file:// protocol)
+    function getStorage(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function setStorage(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch (err) {}
+    }
+
+    // 1. Theme Management (Dark / Light)
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const storedTheme = getStorage('tharu_theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.body.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        document.body.removeAttribute('data-theme');
+      }
+      setStorage('tharu_theme', theme);
+    }
+
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else if (prefersDark) {
+      applyTheme('dark');
+    }
+
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        applyTheme(isDark ? 'light' : 'dark');
+      });
+    }
+
+    // 2. View Mode (Grid vs. List View)
+    const catalogGrid = document.getElementById('catalogGrid');
+    const viewGridBtn = document.getElementById('viewGridBtn');
+    const viewListBtn = document.getElementById('viewListBtn');
+    const savedView = getStorage('tharu_menu_view') || 'grid';
+
+    function setViewMode(mode) {
+      if (!catalogGrid) return;
+      if (mode === 'list') {
+        catalogGrid.classList.add('list-view');
+        if (viewListBtn) viewListBtn.classList.add('active');
+        if (viewGridBtn) viewGridBtn.classList.remove('active');
+      } else {
+        catalogGrid.classList.remove('list-view');
+        if (viewGridBtn) viewGridBtn.classList.add('active');
+        if (viewListBtn) viewListBtn.classList.remove('active');
+      }
+      setStorage('tharu_menu_view', mode);
+    }
+
+    setViewMode(savedView);
+
+    if (viewGridBtn) {
+      viewGridBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        setViewMode('grid');
+      });
+    }
+
+    if (viewListBtn) {
+      viewListBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        setViewMode('list');
+      });
+    }
+
+    // 3. Category Filter Horizontal Scroll Arrow Button
+    const categoryBar = document.getElementById('categoryFilterBar');
+    const filterScrollRight = document.getElementById('filterScrollRight');
+
+    if (filterScrollRight && categoryBar) {
+      filterScrollRight.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const maxScroll = categoryBar.scrollWidth - categoryBar.clientWidth;
+        if (categoryBar.scrollLeft >= maxScroll - 15) {
+          // If at the end, cycle back to the beginning
+          categoryBar.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Otherwise scroll forward
+          categoryBar.scrollBy({ left: 180, behavior: 'smooth' });
+        }
+      });
+    }
+
+    // 4. Real-Time Search & Category Filters
+    const searchInput = document.getElementById('menuSearchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const menuCards = document.querySelectorAll('.menu-card');
+    const noResults = document.getElementById('noResults');
+
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    function filterMenu() {
+      let visibleCount = 0;
+
+      menuCards.forEach(card => {
+        const itemCategory = card.getAttribute('data-category');
+        const itemName = (card.getAttribute('data-name') || '').toLowerCase();
+        const descEl = card.querySelector('.item-description');
+        const itemDesc = descEl ? descEl.textContent.toLowerCase() : '';
+
+        const matchesCategory = (currentCategory === 'all' || itemCategory === currentCategory);
+        const matchesSearch = itemName.includes(searchQuery) || itemDesc.includes(searchQuery);
+
+        if (matchesCategory && matchesSearch) {
+          card.classList.remove('card-hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('card-hidden');
+        }
+      });
+
+      if (noResults) {
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-category');
+        filterMenu();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        filterMenu();
+      });
+    }
+
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+  </script>
+</body>
+</html>
