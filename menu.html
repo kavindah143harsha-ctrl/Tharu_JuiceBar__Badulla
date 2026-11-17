@@ -242,7 +242,7 @@
     [data-theme="dark"] .theme-icon-dark { display: block !important; }
     [data-theme="dark"] .theme-icon-light { display: none !important; }
 
-    /* Catalog Hero (Without the badge) */
+    /* Catalog Hero */
     .menu-hero {
       padding: 2.5rem 0 0.75rem;
       text-align: center;
@@ -261,16 +261,43 @@
       line-height: 1.5;
     }
 
-    /* Live Search Input */
+    /* -------------------------------------------------------------
+       SEARCH BAR WITH PROMINENT SEARCH ICON
+    ------------------------------------------------------------- */
     .search-wrapper {
       max-width: 560px;
       margin: 0 auto 1.25rem;
       position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--mango);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .search-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--mango);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
     .search-input {
       width: 100%;
-      padding: 0.95rem 1.25rem 0.95rem 3.25rem;
+      padding: 0.95rem 1.25rem 0.95rem 3.4rem !important;
       font-size: 1rem;
       border-radius: var(--radius-full);
       border: 1px solid var(--glass-border);
@@ -284,23 +311,7 @@
 
     .search-input:focus {
       border-color: var(--mango);
-      box-shadow: 0 8px 24px var(--mango-glow);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 1.2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-light);
-      pointer-events: none;
-    }
-
-    .search-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: currentColor;
-      stroke-width: 2.2;
+      box-shadow: 0 0 0 3px var(--mango-light), 0 8px 24px var(--mango-glow);
     }
 
     /* -------------------------------------------------------------
@@ -839,15 +850,17 @@
   <main>
     <section class="menu-hero">
       <div class="container">
-        <!-- Badge removed as requested -->
         <h2 class="menu-title">Our Refreshment Catalog</h2>
         <p class="menu-subtitle">Made to order using natural local ingredients.</p>
 
-        <!-- Live Instant Search Bar -->
+        <!-- Live Instant Search Bar with Visible Search Icon -->
         <div class="search-wrapper">
-          <div class="search-icon">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </div>
+          <span class="search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
           <input 
             type="text" 
             id="menuSearchInput" 
