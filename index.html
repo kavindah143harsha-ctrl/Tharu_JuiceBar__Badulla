@@ -214,38 +214,60 @@
       gap: 10px;
     }
 
-    .theme-toggle-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid var(--glass-border);
-      background: var(--glass-surface-elevated);
-      color: var(--text-main);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      backdrop-filter: var(--blur-strength);
-      box-shadow: var(--glass-shadow);
-      transition: transform var(--transition-fast), color var(--transition-fast);
-    }
+    /* --- THEME TOGGLE BUTTON STYLES --- */
 
-    .theme-toggle-btn:hover {
-      transform: scale(1.05);
-      color: var(--mango);
-    }
+/* 1. LIGHT MODE (Default): White button, clear dark border, shadow, dark Moon icon */
+.theme-toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff !important;
+  color: #0f172a !important;                               /* Dark slate moon icon */
+  border: 1.5px solid rgba(15, 23, 42, 0.22) !important;  /* Clear dark border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;  /* Distinct shadow */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
 
-    .theme-toggle-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-    }
+.theme-toggle-btn:hover {
+  transform: scale(1.08);
+  color: #FF7A00 !important;
+  border-color: #FF7A00 !important;
+}
 
-    .theme-icon-dark { display: none; }
-    [data-theme="dark"] .theme-icon-dark { display: block; }
-    [data-theme="dark"] .theme-icon-light { display: none; }
+.theme-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* By default (Light Mode): Show Moon, Hide Sun */
+.theme-icon-moon { display: block !important; }
+.theme-icon-sun  { display: none !important; }
+
+/* 2. DARK MODE: Deep dark button, luminous border, shadow, bright Sun icon */
+[data-theme="dark"] .theme-toggle-btn,
+html[data-theme="dark"] .theme-toggle-btn,
+body[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(24, 38, 29, 0.95) !important;
+  color: #FF7A00 !important;                               /* Glowing orange Sun icon */
+  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;/* Crisp light border */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 122, 0, 0.25) !important;
+}
+
+[data-theme="dark"] .theme-icon-moon,
+html[data-theme="dark"] .theme-icon-moon,
+body[data-theme="dark"] .theme-icon-moon {
+  display: none !important;                                /* Hide Moon in Dark Mode */
+}
+
+[data-theme="dark"] .theme-icon-sun,
+html[data-theme="dark"] .theme-icon-sun,
+body[data-theme="dark"] .theme-icon-sun {
+  display: block !important;                               /* Show Sun in Dark Mode */
+}
 
     /* Hero */
     .hero-section {
@@ -900,22 +922,25 @@
 
         <!-- Theme Toggle -->
         <div class="header-actions">
-          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
-            <svg class="theme-icon-light" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="theme-icon-dark" viewBox="0 0 24 24">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
+          <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Toggle dark and light mode" title="Toggle Dark/Light Mode">
+  <!-- Moon Icon (Visible in Light Mode) -->
+  <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+
+  <!-- Sun Icon (Visible in Dark Mode) -->
+  <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+</button>
         </div>
       </div>
     </div>
