@@ -1298,6 +1298,7 @@
   </main>
 
  
+<!-- ================= ADAPTIVE LIGHT & DARK FOOTER ================= -->
 <footer class="custom-footer">
   <div class="footer-wrap">
     
@@ -1339,7 +1340,7 @@
       <h3 class="footer-heading">Contact &amp; Socials</h3>
       <div class="footer-contact-list">
         
-        <!-- Location / Map -->
+        <!-- Location / Map Pin -->
         <a href="https://share.google/PE3P3I8u0RjqjTAIh" target="_blank" rel="noopener" class="footer-contact-item">
           <div class="contact-icon-wrap map-color">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1395,6 +1396,312 @@
     <p>© 2026 Tharu Juice Bar (Fresh &amp; Natural) — Badulla. All Rights Reserved.</p>
   </div>
 </footer>
+
+<style>
+  /* -----------------------------------------------------------------
+     LIGHT MODE (DEFAULT) - Bright Frosted Glass with Dark Clean Text
+  ----------------------------------------------------------------- */
+  .custom-footer {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: #0f172a !important;
+    padding: 3rem 1.25rem 2rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.9) !important;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .footer-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Logo Row */
+  .footer-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2E7D32, #FF7A00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(255, 122, 0, 0.3);
+  }
+
+  .footer-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.18rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: #0f172a !important;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .footer-subtitle {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #2E7D32 !important;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .footer-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #475569 !important;
+    max-width: 520px;
+    margin: 0;
+  }
+
+  /* Section Headings */
+  .footer-heading {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0f172a !important;
+    letter-spacing: 0.02em;
+    margin: 0 0 1rem 0;
+  }
+
+  /* Quick Links */
+  .footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-nav-list a {
+    color: #475569 !important;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+  }
+
+  .footer-nav-list a:hover {
+    color: #FF7A00 !important;
+    transform: translateX(4px);
+  }
+
+  /* Contact List */
+  .footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #334155 !important;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .footer-contact-item:hover {
+    color: #FF7A00 !important;
+  }
+
+  .contact-icon-wrap {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon-wrap svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .map-color { color: #2E7D32 !important; }
+  .wa-color { color: #25D366 !important; }
+
+  /* Square Social Buttons (Light Mode) */
+  .footer-social-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .social-sq-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0f172a !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .social-sq-btn svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .social-sq-btn:hover {
+    background: #FF7A00 !important;
+    color: #ffffff !important;
+    border-color: #FF7A00 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 122, 0, 0.35);
+  }
+
+  /* Divider & Copyright (Light Mode) */
+  .footer-divider-line {
+    max-width: 1100px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08) !important;
+    margin: 2rem auto 1.25rem;
+  }
+
+  .footer-bottom-bar {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .footer-bottom-bar p {
+    font-size: 0.82rem;
+    color: #64748b !important;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* -----------------------------------------------------------------
+     DARK MODE (AUTOMATIC ON TOGGLE) - Deep Emerald/Obsidian Glass
+  ----------------------------------------------------------------- */
+  [data-theme="dark"] .custom-footer,
+  html[data-theme="dark"] .custom-footer,
+  body[data-theme="dark"] .custom-footer {
+    background: rgba(14, 23, 17, 0.94) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #f8fafc !important;
+  }
+
+  [data-theme="dark"] .footer-title,
+  html[data-theme="dark"] .footer-title,
+  body[data-theme="dark"] .footer-title,
+  [data-theme="dark"] .footer-heading,
+  html[data-theme="dark"] .footer-heading,
+  body[data-theme="dark"] .footer-heading {
+    color: #f8fafc !important;
+  }
+
+  [data-theme="dark"] .footer-subtitle,
+  html[data-theme="dark"] .footer-subtitle,
+  body[data-theme="dark"] .footer-subtitle {
+    color: #3ddc84 !important;
+  }
+
+  [data-theme="dark"] .footer-desc,
+  html[data-theme="dark"] .footer-desc,
+  body[data-theme="dark"] .footer-desc {
+    color: #94a3b8 !important;
+  }
+
+  [data-theme="dark"] .footer-nav-list a,
+  html[data-theme="dark"] .footer-nav-list a,
+  body[data-theme="dark"] .footer-nav-list a {
+    color: #cbd5e1 !important;
+  }
+
+  [data-theme="dark"] .footer-nav-list a:hover,
+  html[data-theme="dark"] .footer-nav-list a:hover,
+  body[data-theme="dark"] .footer-nav-list a:hover {
+    color: #FF7A00 !important;
+  }
+
+  [data-theme="dark"] .footer-contact-item,
+  html[data-theme="dark"] .footer-contact-item,
+  body[data-theme="dark"] .footer-contact-item {
+    color: #cbd5e1 !important;
+  }
+
+  [data-theme="dark"] .footer-contact-item:hover,
+  html[data-theme="dark"] .footer-contact-item:hover,
+  body[data-theme="dark"] .footer-contact-item:hover {
+    color: #FF7A00 !important;
+  }
+
+  [data-theme="dark"] .map-color,
+  html[data-theme="dark"] .map-color,
+  body[data-theme="dark"] .map-color {
+    color: #3ddc84 !important;
+  }
+
+  [data-theme="dark"] .social-sq-btn,
+  html[data-theme="dark"] .social-sq-btn,
+  body[data-theme="dark"] .social-sq-btn {
+    background: rgba(24, 38, 29, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    color: #3ddc84 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  [data-theme="dark"] .social-sq-btn:hover,
+  html[data-theme="dark"] .social-sq-btn:hover,
+  body[data-theme="dark"] .social-sq-btn:hover {
+    background: #FF7A00 !important;
+    color: #ffffff !important;
+    border-color: #FF7A00 !important;
+  }
+
+  [data-theme="dark"] .footer-divider-line,
+  html[data-theme="dark"] .footer-divider-line,
+  body[data-theme="dark"] .footer-divider-line {
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  [data-theme="dark"] .footer-bottom-bar p,
+  html[data-theme="dark"] .footer-bottom-bar p,
+  body[data-theme="dark"] .footer-bottom-bar p {
+    color: #94a3b8 !important;
+  }
+
+  /* Desktop layout adjustment */
+  @media (min-width: 768px) {
+    .footer-wrap {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr;
+      gap: 3rem;
+    }
+    .footer-bottom-bar {
+      text-align: left;
+    }
+  }
+</style>
+<!-- ================= END FOOTER ================= -->
 
 <style>
   /* Scoped Footer Styling Matching Screenshot */
