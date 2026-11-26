@@ -1967,11 +1967,12 @@
       setStorage('tharu_theme', theme);
     }
 
-    if (storedTheme) {
-      applyTheme(storedTheme);
-    } else if (prefersDark) {
-      applyTheme('dark');
-    }
+
+if (storedTheme === 'dark') {
+  applyTheme('dark');
+} else {
+  applyTheme('light');
+}
 
     if (themeToggleBtn) {
       themeToggleBtn.addEventListener('click', (e) => {
